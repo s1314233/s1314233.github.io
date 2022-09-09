@@ -1,0 +1,371 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>java基础 | 好高骛远</title><meta name="keywords" content="java"><meta name="author" content="好高骛远"><meta name="copyright" content="好高骛远"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="String字符使用加号拼接，实际上是新建一个StringBuffer对象，调用apped方法，最后再转为String方法。 StringBuff的append方法添加数据并返回对象本身（链式编程） ArrayList&lt;&gt;在指定位置添加元素不会替换，指定元素之后的所有元素后移 继承：变量先看方法内部有没有，没有到本类成员变量去找，再没有到父类成员变量去找，不考虑父亲的父亲。 this">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java基础">
+<meta property="og:url" content="http://example.com/2022/03/17/2022-java%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="好高骛远">
+<meta property="og:description" content="String字符使用加号拼接，实际上是新建一个StringBuffer对象，调用apped方法，最后再转为String方法。 StringBuff的append方法添加数据并返回对象本身（链式编程） ArrayList&lt;&gt;在指定位置添加元素不会替换，指定元素之后的所有元素后移 继承：变量先看方法内部有没有，没有到本类成员变量去找，再没有到父类成员变量去找，不考虑父亲的父亲。 this">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s4.ax1x.com/2022/02/25/bADyzq.jpg">
+<meta property="article:published_time" content="2022-03-17T03:08:42.000Z">
+<meta property="article:modified_time" content="2022-03-17T03:09:06.962Z">
+<meta property="article:author" content="好高骛远">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s4.ax1x.com/2022/02/25/bADyzq.jpg"><link rel="shortcut icon" href="https://s4.ax1x.com/2022/02/25/bABF3t.png"><link rel="canonical" href="http://example.com/2022/03/17/2022-java%E5%9F%BA%E7%A1%80/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'java基础',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2022-03-17 11:09:06'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s4.ax1x.com/2022/02/25/bADjTe.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">33</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">36</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s4.ax1x.com/2022/02/25/bADyzq.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">好高骛远</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">java基础</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-03-17T03:08:42.000Z" title="发表于 2022-03-17 11:08:42">2022-03-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-03-17T03:09:06.962Z" title="更新于 2022-03-17 11:09:06">2022-03-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/java/">java</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="java基础"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><ol>
+<li>String字符使用加号拼接，实际上是新建一个StringBuffer对象，调用apped方法，最后再转为String方法。</li>
+<li>StringBuff的append方法添加数据并返回对象本身（链式编程）</li>
+<li>ArrayList&lt;&gt;在指定位置添加元素不会替换，指定元素之后的所有元素后移</li>
+<li><strong>继承</strong>：变量先看方法内部有没有，没有到本类成员变量去找，再没有到父类成员变量去找，不考虑父亲的父亲。</li>
+<li>this代表本类对象的引用，super表示父类对象引用（二者都可以访问构造方法）</li>
+<li>子类可能需要用到父类，所以子类初始化，父类也初始化 ，子类第一句默认super（）</li>
+<li>视频super内存图</li>
+<li>方法重写（注解Override）可以用super.调用父类方法,私有方法不能重写，子类方法访问权限不能更低（public&gt;默认&gt;私有） </li>
+<li>Java只支持单继承，不支持多继承，还支持多层继承</li>
+<li>final修饰基本数据类型，基本数据类型不能改变，修饰引用类型，引用变量的地址值不能改变。</li>
+<li>static表示共享，静态，被static修饰的成员变量建议使用类名来访问。</li>
+<li><strong>多态</strong>：同一个对象在不同时刻表现出来不同的不同形态，例如：猫 cat &#x3D; new 猫();动物 animal &#x3D; new 猫();多态的前提和体现：1.有继承&#x2F;实现关系，2.有方法重写，3.有父类引用指向子类引用。</li>
+<li>多态的成员变量编译和运行都看左边，成员方法的编译看左边，运行看右边。</li>
+<li>多态传形参传父类，实参为子类，父类有的方法才能调用，不能调用子类特有的方法，规则参考上一条。</li>
+<li><strong>多态转型</strong>：  <em>向上转型</em>：父类引用指向子类对象Animal a &#x3D; new Cat（），<em>向下转型</em>：父类引用转为子类对象，Cat c &#x3D; new (Cat)a;</li>
+<li>有抽象方法必须是抽象类，抽象类不一定需要抽象方法</li>
+<li>抽象子类要么是抽象子类要么重写抽象类中的所有方法。</li>
+<li>多态的形式：具体类多态，抽象类多态，接口类多态</li>
+<li>接口类的实现类要么重写接口中的所有抽象方法，要么是抽象类。</li>
+<li>接口成员变量只能是常量，默认修饰符：public  static  final，成员方法只能是抽象方法，默认修饰符public  abstract。</li>
+<li>类实现关系可以单实现也可以多实现，还可以继承一个类的同时实现多个接口</li>
+<li>接口和接口是继承关系，可以单继承，也可以多继承。</li>
+<li>抽象类成员变量有常量，变量，构造方法，抽象方法，非抽象方法。接口只有常量和抽象方法。</li>
+<li>设计理念，抽象类对 对象抽象包括属性和行为，接口对行为抽象主要是行为。</li>
+<li>抽象类是对事物的抽象，接口是对行为的抽象。</li>
+<li>抽象类名作为形参和返回值需要的是该抽象类的子类对象。</li>
+<li>接口名作为形参和返回值需要的是该接口的实现类对象。</li>
+<li>内部类（在类中定义一个类）可以直接访问外部类的成员，包括私有，外部类访问内部类的成员必须创建对象</li>
+<li>成员内部类public修饰，创建对象例子：Outer.Inter oi &#x3D; new Outer().new Inter(),private修饰需要在外部类使用方法调用。</li>
+<li>局部内部类，在方法内部中定义的类，要在方法内部定义使用。</li>
+<li>匿名内部类本质是继承子类或接口的实现类</li>
+<li>接口名作为形参时可以不创建实现类对象，而是使用匿名内部类</li>
+<li>没有构造方法看方法是不是static修饰的，如果是可以用类名修饰。</li>
+<li>所有类建议重写tostring方法。</li>
+<li>工具类（例：Math，System）构造方法用private修饰，方法类用public static修饰，方便使用类名调用。</li>
+<li><strong>装箱</strong>：将基本数据类型转换成对应的包装类型。<strong>拆箱</strong>：将包装类类型准换成对应的基本数据类型。</li>
+<li>只要是对象（包装类对象）在使用前就要判是否为null。</li>
+<li>使用包装类有更多方法操作该对象，更多使用是基本数据类型和字符串之间的转换。</li>
+<li>int转string：valueof</li>
+<li>string转int：parseInt</li>
+<li>try-catch在try中异常时创建一个异常对象，去catch中匹配处理。</li>
+<li>编译时异常用try-catch或throws，用throws处理需要谁调用谁处理，运行时异常可以不处理。</li>
+<li>throws跟在方法名后，后跟异常类名；throw放在方法体中，后跟异常对象名。</li>
+<li><img src="https://img-blog.csdnimg.cn/1ac89f6887db4480882dec30e2e1f2c1.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5aW96auY6aqb6L-caQ==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></li>
+<li>集合的遍历用迭代器</li>
+<li>迭代器遍历过程中，通过集合对象修改了集合中的元素，造成迭代器获取元素中判断预期修改值和实际修改值不一样。</li>
+<li>列表迭代器（ListIterator）有add方法（迭代器没有），不会产生并发修改异常</li>
+<li><img src="https://img-blog.csdnimg.cn/031c1fa2f5b943639cf9ad49469ceef4.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5aW96auY6aqb6L-caQ==,size_16,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></li>
+<li>set集合没有索引，不能用普通for遍历。</li>
+<li>默认情况下（Objiect中的hasCode）不同对象的哈希值是不同的，但通过方法重写可以使不同对象的哈希值相同。</li>
+<li>java中哈希表的实现是数组加链表。</li>
+<li>hashSet存储类对象要重写equals和hashcode方法（可自动生成）。</li>
+<li>LinkedHashSet（继承HashSet）元素有序且唯一。</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhanshixiang/article/details/82492872?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522163196197416780357212154%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=163196197416780357212154&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~baidu_landing_v2~default-4-82492872.first_rank_v2_pc_rank_v29&utm_term=TreeSet&spm=1018.2226.3001.4187">Set集合之TreeSet集合</a>.</li>
+<li>泛型可用在类，方法和接口中，被称为泛型类，泛型方法和泛型接口</li>
+<li>泛型类在类名后加<T>,用到变量类型时用&lt;代替&gt;</li>
+<li>泛型方法：public <T> void demo(T t){}</li>
+<li>泛型创建时类似ArrayList</li>
+<li>泛型接口在接口名后加 <T>，实现类在实现类名后加 <T>接口名后加 <T>。</li>
+<li>接口方法不要加任何修饰符</li>
+<li>可变参数例子：**public  static  int sum(int… a){}**。在数据类型后加…</li>
+<li>可变参数是一个数组，包含可变参数，可变参数要放到后边。</li>
+<li>map获取所有key： Set<K> keySet()</li>
+<li>map获取所有值的集合： Collection<V> values()</li>
+<li>File就是文件和目录路径名的抽象表示</li>
+<li>字节输出流做了三件事：1.  调用系统功能创建了对象。2. 创建了字节输出流对象。       3. 字节输出流对象指向文件</li>
+<li>字节输出流write()方法写的是字节，可使用getBytes()获得字符串对应的字节码。</li>
+<li>windows中”\r\n”表示换行</li>
+<li>字节缓冲输入&#x2F;输出流只是提供一个缓冲区。</li>
+<li>汉字gbk编码2个字节，utf-8编码三个字节，而字节流输入输出只能输出一个字节，所以要字符流输入输出。</li>
+<li>汉字存储的时候编码是负数。</li>
+<li>字符流&#x3D;字节流+编码表（类似字节缓冲区，都需要传参字节流对象）</li>
+<li>GBK中文编码，utf-8万国码，用什么规则编码就要用什么规则解码</li>
+<li>字符流有flush()刷新流方法,字符流中close()方法先刷新再关闭。</li>
+<li>字符缓冲流BufferedWriter和BufferedReader两个方法，newLine()和readLine(),后一个方法已经到结尾则为null，且不包含终止符号</li>
+<li>字节打印流printStream继承父亲的write()方法会转码，而自己的write()方法会原样输出。</li>
+<li>对象序列化流序列化对象，对象需要实现serializable接口，serializable接口是个标记接口，不需要重写任何方法。</li>
+<li>properties不能写泛型，和io流结合的方法load和store</li>
+<li>线程优先级范围1-10。</li>
+<li>继承Thread类有getName()方法，实现Runnable接口没有getName()方法，这也是实现多线程的两种方法。</li>
+<li>非静态同步方法锁对象是this，静态同步方法的锁对象是类名.calss</li>
+<li>StringBuffer线程安全对应StringBuider不线程安全，Vector线程安全，ArrayList不线程安全，HashTable线程安全HashMap不线程安全。三个线程安全的类也不多用，常用Collections类中的方法来返回安全对象。</li>
+<li>lock和unlock方法常结合try—finally方法使用</li>
+<li>使用wait要在synchronized方法中使用，记得使用notifyAll方法。</li>
+<li>lambda方法使用（）-&gt;{ },小括号里可以有参数，用逗号隔开，有且仅有一个参数，小括号可以省略；有且仅有一条代码，大括号和分号可以省略；如果有return且包含return只有一条代码块，return要省略；实现的是接口中的方法，不用再去写一个实现类。</li>
+<li>lambda方法使用条件有一个接口，且只有一个抽象方法，使用在方法参数的地方。</li>
+<li>匿名内部类会生成字节码(class)文件，而lambda不会生成字节码文件。</li>
+<li>接口的组成：常量（public static final）,抽象方法（public abstract）；java8新增默认方法和静态方法，java9新增私有方法。</li>
+<li>lambda表达式被类的实例方法替代的时候，第一个参数作为调用者，后边的参数全部传递给该方法做参数。</li>
+<li>函数式接口Consum注意andThen()方法，Predicate有and和or方法。</li>
+<li>Collections集合默认方法生成流，Map间接方法生成流，数组使用静态方法Stream.of()生成流。.</li>
+<li>向下转型使用强制转型,后边跟个父类对象:例:Cat c &#x3D; (Cat)animal,且只能转同类型,猫转猫,狗转狗</li>
+<li>没有方法体的方法应该定义为抽象方法，而类中如果有抽象方法，该类必须定义为抽象类</li>
+<li>Java中的接口更多的体现在对行为的抽象</li>
+<li>接口与接口继承关系，可以单继承，也可以多继承内部类可以直接访问外部类的成员，包括私有</li>
+<li>工具类设计思想:1.构造方法用 private 修饰2.成员用 public static 修饰</li>
+<li>Calendar的set方法年需要手动减一,月份需要手动加一.</li>
+<li>修改迭代器中的元素会发生异常,使用for</li>
+<li>列表有专用的迭代器,ListIterator</li>
+<li>增强for不能用于迭代器.</li>
+<li>Set没有索引、只能通过迭代器或增强for循环遍历</li>
+<li>重写equal方法还要重写hashCode方法,否则equal无效,hashSet表内容相同的对象哈希值不103. 同会存到不同的位置,达不到元素不重复的目的.</li>
+<li>重写Comparable接口的compareTo方法this在前从小到大,this在后从大到小</li>
+<li>对象反序列化流ObjectInputStream要抛出IOException ,ClassNotFoundException异常.</li>
+<li>private final static long serialVersionUID &#x3D; 42L修改了对象所属的类文件，读取数据会不会出问题呢</li>
+<li>transient关键字修饰，该关键字标记的成员变量不参与序列化过程</li>
+<li>Properties的store方法备注没有写null.</li>
+<li>Function&lt;T,R&gt;接口通常用于对参数进行处理，转换(处理逻辑由Lambda表达式实现)，然后<strong>返回一个新的值</strong>,这个值在andthen方法时才有用.</li>
+<li>Stream的count()方法返回值是long.</li>
+<li>transient 只能修饰变量，不能修饰类和方法</li>
+<li>static 变量因为不属于任何对象(Object)，所以无论有没有 transient 关键字修饰，均不会被序列化</li>
+<li>静态代码块对于定义在它之后的静态变量，可以赋值，但是不能访问</li>
+<li>非静态代码块与构造函数的区别是： 非静态代码块是给所有对象进行统一初始化，而构造函数是给对应的对象初始化，因为构造函数是可以多个的，运行哪个构造函数就会建立什么样的对象，但无论建立哪个对象，都会先执行相同的构造代码块。也就是说，构造代码块中定义的是不同对象共性的初始化内容。</li>
+<li>File的mkdirs方法只能创建文件夹,即使你的后缀是文件格式.</li>
+<li>Deque 还提供有 push() 和 pop() 等其他方法，可用于模拟栈</li>
+<li><img src="https://img-blog.csdnimg.cn/0ec46b539d204e11ac90640536cf0b81.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5aW96auY6aqb6L-caQ==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></li>
+<li>ArrayDeque 是基于可变长的数组和双指针来实现</li>
+<li>ArrayDeque 不支持存储 NULL 数据，但 LinkedList 支持</li>
+<li>PriorityQueue 是非线程安全的，且不支持存储 NULL 和 non-comparable 的对象</li>
+<li>PriorityQueue 默认是小顶堆</li>
+<li>HashMap 可以存储 null 的 key 和 value，但 null 作为键只能有一个，null 作为值可以有多个</li>
+<li>String拼接两个字符串对象会在堆上创建一个新对象.</li>
+<li>String s1 &#x3D; new String(“abc”)创建了两个对象.</li>
+<li>两种浮点数类型没有浮点数技术.</li>
+<li>sleep不释放锁,wait释放锁</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">好高骛远</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/03/17/2022-java%E5%9F%BA%E7%A1%80/">http://example.com/2022/03/17/2022-java基础/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">好高骛远</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/java/">java</a></div><div class="post_share"><div class="social-share" data-image="https://s4.ax1x.com/2022/02/25/bADyzq.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/03/17/2022-ryu%E5%AE%89%E8%A3%85/"><img class="prev-cover" src="https://s4.ax1x.com/2022/02/25/bADyzq.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">ryu安装</div></div></a></div><div class="next-post pull-right"><a href="/2022/03/17/2022-Python%E5%AD%A6%E4%B9%A0-%E5%B0%81%E8%A3%85/"><img class="next-cover" src="https://s4.ax1x.com/2022/02/25/bADyzq.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Python学习-封装</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/03/17/2022-jvm%E7%AC%94%E8%AE%B0/" title="jvm笔记"><img class="cover" src="https://s4.ax1x.com/2022/02/25/bADyzq.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-17</div><div class="title">jvm笔记</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://s4.ax1x.com/2022/02/25/bADjTe.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">好高骛远</div><div class="author-info__description">不要你唯唯诺诺,我要你风流快活</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">33</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">36</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/s1314233"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/s1314233" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎光临!</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/31/Servlet%E6%98%AF%E4%BB%80%E4%B9%88/" title="Servlet是什么?">Servlet是什么?</a><time datetime="2022-08-31T06:56:49.000Z" title="发表于 2022-08-31 14:56:49">2022-08-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/04/06/2022-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="计算机网络">计算机网络</a><time datetime="2022-04-06T11:51:26.000Z" title="发表于 2022-04-06 19:51:26">2022-04-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/03/30/2022-hexo%E5%8D%9A%E5%AE%A2/" title="hexo博客">hexo博客</a><time datetime="2022-03-30T05:19:17.000Z" title="发表于 2022-03-30 13:19:17">2022-03-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/03/28/2022-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" title="滑动窗口">滑动窗口</a><time datetime="2022-03-28T07:54:58.000Z" title="发表于 2022-03-28 15:54:58">2022-03-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/03/20/2022-ssm%E5%AD%A6%E4%B9%A0/" title="ssm学习">ssm学习</a><time datetime="2022-03-20T12:52:56.000Z" title="发表于 2022-03-20 20:52:56">2022-03-20</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 好高骛远</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="8368698132" data-server="tencent" data-type="artist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

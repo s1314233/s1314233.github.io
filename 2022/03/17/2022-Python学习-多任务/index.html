@@ -1,0 +1,291 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Python学习-多任务 | 好高骛远</title><meta name="keywords" content="python"><meta name="author" content="好高骛远"><meta name="copyright" content="好高骛远"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="线程代码实现直接使用线程模块123456789101112131415161718192021# 导入线程模块import threadingdef sing():	print(&quot;我在唱歌&quot;)if __name__ &#x3D;&#x3D; &quot;__main__&quot;:		#创建线程对象		t&#x3D;threading.Thread(target&#x3D;sing)		#可以带参,传元组,只传一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python学习-多任务">
+<meta property="og:url" content="http://example.com/2022/03/17/2022-Python%E5%AD%A6%E4%B9%A0-%E5%A4%9A%E4%BB%BB%E5%8A%A1/index.html">
+<meta property="og:site_name" content="好高骛远">
+<meta property="og:description" content="线程代码实现直接使用线程模块123456789101112131415161718192021# 导入线程模块import threadingdef sing():	print(&quot;我在唱歌&quot;)if __name__ &#x3D;&#x3D; &quot;__main__&quot;:		#创建线程对象		t&#x3D;threading.Thread(target&#x3D;sing)		#可以带参,传元组,只传一个">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s4.ax1x.com/2022/02/25/bADyzq.jpg">
+<meta property="article:published_time" content="2022-03-17T03:05:43.000Z">
+<meta property="article:modified_time" content="2022-03-17T03:06:52.481Z">
+<meta property="article:author" content="好高骛远">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s4.ax1x.com/2022/02/25/bADyzq.jpg"><link rel="shortcut icon" href="https://s4.ax1x.com/2022/02/25/bABF3t.png"><link rel="canonical" href="http://example.com/2022/03/17/2022-Python%E5%AD%A6%E4%B9%A0-%E5%A4%9A%E4%BB%BB%E5%8A%A1/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Python学习-多任务',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-03-17 11:06:52'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s4.ax1x.com/2022/02/25/bADjTe.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">33</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">36</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s4.ax1x.com/2022/02/25/bADyzq.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">好高骛远</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Python学习-多任务</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-03-17T03:05:43.000Z" title="发表于 2022-03-17 11:05:43">2022-03-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-03-17T03:06:52.481Z" title="更新于 2022-03-17 11:06:52">2022-03-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/python/">python</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Python学习-多任务"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="直接使用线程模块"><a href="#直接使用线程模块" class="headerlink" title="直接使用线程模块"></a>直接使用线程模块</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入线程模块</span></span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">sing</span>():</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">&quot;我在唱歌&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">		<span class="comment">#创建线程对象</span></span><br><span class="line">		t=threading.Thread(target=sing)</span><br><span class="line"></span><br><span class="line">		<span class="comment">#可以带参,传元组,只传一个后边带逗号</span></span><br><span class="line">		<span class="comment">#t=threading.Thread(target=sing,args=(,))</span></span><br><span class="line">		</span><br><span class="line">		<span class="comment">#创建执行线程</span></span><br><span class="line">		t.start()</span><br><span class="line">		</span><br><span class="line">		<span class="comment">#获取所有线程</span></span><br><span class="line">		threading.<span class="built_in">enumerate</span>()</span><br><span class="line">		</span><br><span class="line">		<span class="comment">#查看线程数量</span></span><br><span class="line">		<span class="built_in">len</span>(threading.<span class="built_in">enumerate</span>())</span><br></pre></td></tr></table></figure>
+
+<h3 id="继承线程类"><a href="#继承线程类" class="headerlink" title="继承线程类"></a>继承线程类</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="comment">#继承threading模块的Thread类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyThread</span>(threading.Thread):</span><br><span class="line">     <span class="keyword">def</span> <span class="title function_">run</span>(<span class="params">self</span>):</span><br><span class="line">         <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">            time.sleep(<span class="number">1</span>)</span><br><span class="line">            <span class="built_in">print</span>(i)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    t=MyThread()</span><br><span class="line">    t.start()</span><br></pre></td></tr></table></figure>
+
+<h2 id="共享全局变量"><a href="#共享全局变量" class="headerlink" title="共享全局变量"></a>共享全局变量</h2><ol>
+<li>当只修改全局变量的值不需在函数中使用 global声明</li>
+<li>修改了全局变量指向的内容要在函数中使用global声明</li>
+<li>用来传递的参数也共享</li>
+</ol>
+<h2 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建锁</span></span><br><span class="line">mutex=threading.Lock()</span><br><span class="line"></span><br><span class="line"><span class="comment">#上锁</span></span><br><span class="line">mutex.acquire()</span><br><span class="line"></span><br><span class="line"><span class="comment">#解锁</span></span><br><span class="line">mutex.release()</span><br></pre></td></tr></table></figure>
+
+<h1 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h1><h2 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> multiprocessing</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">sing1</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;菊花台&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">sing2</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;化蝶&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    p1=multiprocessing.Process(target=sing1)</span><br><span class="line">    p2=multiprocessing.Process(target=sing2)</span><br><span class="line">    p1.start()</span><br><span class="line">    p2.start()</span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">	main()</span><br></pre></td></tr></table></figure>
+
+<h2 id="队列实现进程间通信"><a href="#队列实现进程间通信" class="headerlink" title="队列实现进程间通信"></a>队列实现进程间通信</h2><h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> multiprocessing </span><br><span class="line"></span><br><span class="line"><span class="comment">#判空</span></span><br><span class="line"><span class="comment">#q.empty()</span></span><br><span class="line"><span class="comment">#判满</span></span><br><span class="line"><span class="comment">#q.qull()</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">down_from_web</span>(<span class="params">q</span>):</span><br><span class="line">    <span class="comment">#模拟数据</span></span><br><span class="line">    data=[<span class="number">11</span>,<span class="number">22</span>,<span class="number">33</span>,<span class="number">44</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> temp <span class="keyword">in</span> data:</span><br><span class="line">        q.put(temp)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">analysis_data</span>(<span class="params">q</span>):</span><br><span class="line">    watting_analysis_data=<span class="built_in">list</span>()</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#从队列中拿数据</span></span><br><span class="line">    <span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">        data=q.get()</span><br><span class="line">        watting_analysis_data.append(data)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> q.empty():</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="built_in">print</span>(watting_analysis_data)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="comment">#创建队列</span></span><br><span class="line">    q=multiprocessing.Queue(<span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#创建进程通信</span></span><br><span class="line">    p1=multiprocessing.Process(target=down_from_web,args=(q,))</span><br><span class="line">    p2=multiprocessing.Process(target=analysis_data,args=(q,))</span><br><span class="line">    p1.start()</span><br><span class="line">    p2.start()</span><br></pre></td></tr></table></figure>
+
+<h3 id="进程池"><a href="#进程池" class="headerlink" title="进程池"></a>进程池</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> multiprocessing </span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">woker</span>(<span class="params">msg</span>):</span><br><span class="line">    <span class="built_in">print</span>(msg)</span><br><span class="line"></span><br><span class="line"><span class="comment">#进程池放3个进程</span></span><br><span class="line">po=multiprocessing.Pool(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">10</span>):</span><br><span class="line">    <span class="comment">#使用apply_async调用进程运行</span></span><br><span class="line">    <span class="comment">#放入进程的函数,参数(元组)</span></span><br><span class="line">    po.apply_async(woker,(i))</span><br><span class="line"></span><br><span class="line"><span class="comment">#关闭进程池,po不再有新的请求</span></span><br><span class="line">po.close()</span><br><span class="line"></span><br><span class="line"><span class="comment">#主进程等待po中进程结束,放在close之后</span></span><br><span class="line">po.join()</span><br></pre></td></tr></table></figure>
+
+<h1 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h1><p>一条线程时间片轮转实现多任务<br>在一条线程执行某函数需耗时切换另一个函数</p>
+<h2 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h2><p><strong>迭代器</strong>:存储的是生成数据的方式,占用很小的空间<br><strong>例如</strong>:python2版本的range直接生成一个列表,python3版本的range存放生成数据的方式</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections.abc <span class="keyword">import</span> Iterable</span><br><span class="line"><span class="keyword">from</span> collections.abc <span class="keyword">import</span> Iterator</span><br><span class="line"></span><br><span class="line"><span class="comment">#判断一个类是否可以迭代</span></span><br><span class="line"><span class="comment">#1.实现iter方法的类才可以迭代</span></span><br><span class="line"><span class="comment">#2.iter返回一个迭代器</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#实现iter方法的类才可以迭代(可以使用for)</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Classmate</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">         self.names=<span class="built_in">list</span>()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">self,name</span>):</span><br><span class="line">        self.names.append(name)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#返回一个迭代器,将自己当参数传过去(为了在迭代器中调用next方法迭代自己的值)</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__iter__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> ClassIterator(self)</span><br><span class="line"></span><br><span class="line"><span class="comment">#有iter和next方法的类为迭代器类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ClassIterator</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span>  <span class="title function_">__init__</span>(<span class="params">self,obj</span>):</span><br><span class="line">        self.obj=obj</span><br><span class="line">        self.current_num=<span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__iter__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__next__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">if</span> self.current_num&lt;<span class="built_in">len</span>(self.obj.names):</span><br><span class="line">            ret=self.obj.names[self.current_num]</span><br><span class="line">            self.current_num+=<span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> ret</span><br><span class="line">        <span class="comment">#抛出异常不会在for循环可迭代对象为空时继续循环</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">raise</span> StopIteration</span><br></pre></td></tr></table></figure>
+
+<p><strong>迭代器本身就可以迭代</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Classmate</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">         self.names=<span class="built_in">list</span>()</span><br><span class="line">         self.current_num=<span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">self,name</span>):</span><br><span class="line">        self.names.append(name)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__iter__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__next__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">if</span> self.current_num&lt;<span class="built_in">len</span>(self.obj.names):</span><br><span class="line">            ret=self.obj.names[self.current_num]</span><br><span class="line">            self.current_num+=<span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> ret</span><br><span class="line">        <span class="comment">#抛出异常不会在for循环可迭代对象为空时继续循环</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">raise</span> StopIteration</span><br></pre></td></tr></table></figure>
+
+<h2 id="生成器"><a href="#生成器" class="headerlink" title="生成器"></a>生成器</h2><p>生成器是一种特殊的迭代器(没有iter和next方法)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">creat_num</span>(<span class="params">all_num</span>):</span><br><span class="line">    a,b=<span class="number">0</span>,<span class="number">1</span></span><br><span class="line">    current_num=<span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> current_num&lt;all_num:</span><br><span class="line">        <span class="comment">#函数中有yield,这个函数就是一个生成器的模版</span></span><br><span class="line">        <span class="comment">#有yield停止,并返回yield后的值</span></span><br><span class="line">        <span class="keyword">yield</span> a</span><br><span class="line">        a,b=b,a+b</span><br><span class="line">        current_num+=<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#调用生成器的模版,创建一个生成器对象,只创建不执行</span></span><br><span class="line">obj=creat_num(<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#for循环生成器时,输出第一个时执行生成器模版到yield处停止,之后的输出从yield后继续执行</span></span><br><span class="line"><span class="keyword">for</span> num <span class="keyword">in</span> obj:</span><br><span class="line">    <span class="built_in">print</span>(num)</span><br></pre></td></tr></table></figure>
+
+<p>注意:</p>
+<ol>
+<li>可以使用next()调用生成器的next方法</li>
+<li>生成多个生成器互不干扰</li>
+<li>生成器对象有send方法可以传参数一般开始先用next(),如果第一个运行可以传None作为参数</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">用<span class="built_in">next</span>取值时要抛异常</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        ret=<span class="built_in">next</span>(obj)</span><br><span class="line">        <span class="built_in">print</span>(ret)</span><br><span class="line">    <span class="comment">#except StopIteration</span></span><br><span class="line">    <span class="comment">#生成器模版中的return值可以通过异常获得</span></span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> ret:</span><br><span class="line">        <span class="built_in">print</span>(ret.value)</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">creat_num</span>(<span class="params">all_num</span>):</span><br><span class="line">    a,b=<span class="number">0</span>,<span class="number">1</span></span><br><span class="line">    current_num=<span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> current_num&lt;all_num:</span><br><span class="line">        ret=<span class="keyword">yield</span> a</span><br><span class="line">        a,b=b,a+b</span><br><span class="line">        current_num+=<span class="number">1</span></span><br><span class="line"></span><br><span class="line">obj=creat_num(<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#运行到yield左边,将a的值返回</span></span><br><span class="line">ret=<span class="built_in">next</span>(obj)</span><br><span class="line"></span><br><span class="line"><span class="comment">#接着next运行,将参数赋值给yield右边,运行到下一次yield,将将a的值返回</span></span><br><span class="line"><span class="comment">#obj.send(None)</span></span><br><span class="line">ret=obj.send(<span class="string">&quot;123&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="yeild实现多任务"><a href="#yeild实现多任务" class="headerlink" title="yeild实现多任务"></a>yeild实现多任务</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">task_1</span>():</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;1&quot;</span>)</span><br><span class="line">        time.sleep(<span class="number">0.1</span>)</span><br><span class="line">        <span class="keyword">yield</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">task_2</span>():</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;2&quot;</span>)</span><br><span class="line">        time.sleep(<span class="number">0.1</span>)</span><br><span class="line">        <span class="keyword">yield</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>()</span><br><span class="line">    <span class="comment">#创建生成器对象</span></span><br><span class="line">    t1=task_1()</span><br><span class="line">    t1=task_1()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="comment">#类似时间片轮转,遇到yeild去执行另一个</span></span><br><span class="line">        <span class="built_in">next</span>(t1)</span><br><span class="line">        <span class="built_in">next</span>(t2)</span><br></pre></td></tr></table></figure>
+
+<h3 id="gevent实现多任务"><a href="#gevent实现多任务" class="headerlink" title="gevent实现多任务"></a>gevent实现多任务</h3><p>gevent一条线程时间片轮转实现多任务<br>在执行等待操作时切换任务</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span>  gevent <span class="keyword">import</span> monkey</span><br><span class="line"><span class="keyword">import</span> gevent</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="comment">#有耗时操作需要</span></span><br><span class="line"><span class="comment">#将程序中的耗时操作代码换成gevent中自己实现的模块</span></span><br><span class="line">monkey.patch_all()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">coroutine_work</span>(<span class="params">coroutine_name</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">        <span class="built_in">print</span>(coroutine_name,i)</span><br><span class="line">        <span class="comment">#实际程序不一定需要使用sleep来耗时</span></span><br><span class="line">        time.sleep(random.random())</span><br><span class="line"></span><br><span class="line"><span class="comment">#封转好的协程操作,前一个参数为函数,后一个为传入的参数</span></span><br><span class="line">gevent.joinall([</span><br><span class="line">    gevent.spawn(coroutine_work,<span class="string">&quot;work1&quot;</span>),</span><br><span class="line">    gevent.spawn(coroutine_work,<span class="string">&quot;work1&quot;</span>)</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
+<li>进程切换资源消耗大,效率一般</li>
+<li>线程切换需要资源一般,效率一般</li>
+<li>协程切换任务资源很小,效率高</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">好高骛远</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/03/17/2022-Python%E5%AD%A6%E4%B9%A0-%E5%A4%9A%E4%BB%BB%E5%8A%A1/">http://example.com/2022/03/17/2022-Python学习-多任务/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">好高骛远</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/python/">python</a></div><div class="post_share"><div class="social-share" data-image="https://s4.ax1x.com/2022/02/25/bADyzq.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/03/17/2022-Python%E5%AD%A6%E4%B9%A0-%E5%B0%81%E8%A3%85/"><img class="prev-cover" src="https://s4.ax1x.com/2022/02/25/bADyzq.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Python学习-封装</div></div></a></div><div class="next-post pull-right"><a href="/2022/03/17/2022-Python%E5%AD%A6%E4%B9%A0-socket/"><img class="next-cover" src="https://s4.ax1x.com/2022/02/25/bADyzq.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Python学习-socket</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/03/17/2022-Python%E5%AD%A6%E4%B9%A0-socket/" title="Python学习-socket"><img class="cover" src="https://s4.ax1x.com/2022/02/25/bADyzq.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-17</div><div class="title">Python学习-socket</div></div></a></div><div><a href="/2022/03/17/2022-Python%E5%AD%A6%E4%B9%A0-%E5%B0%81%E8%A3%85/" title="Python学习-封装"><img class="cover" src="https://s4.ax1x.com/2022/02/25/bADyzq.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-17</div><div class="title">Python学习-封装</div></div></a></div><div><a href="/2022/03/17/2022-Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B9%8Bmatplotlib/" title="Python数据分析之matplotlib"><img class="cover" src="https://s4.ax1x.com/2022/02/25/bADyzq.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-17</div><div class="title">Python数据分析之matplotlib</div></div></a></div><div><a href="/2022/03/17/2022-scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6/" title="scrapy爬虫框架"><img class="cover" src="https://s4.ax1x.com/2022/02/25/bADyzq.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-17</div><div class="title">scrapy爬虫框架</div></div></a></div><div><a href="/2022/03/17/2022-scrapy%E9%87%8D%E6%9E%84%E5%A3%81%E7%BA%B8%E7%88%AC%E8%99%AB/" title="scrapy重构壁纸爬虫"><img class="cover" src="https://s4.ax1x.com/2022/02/25/bADyzq.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-17</div><div class="title">scrapy重构壁纸爬虫</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://s4.ax1x.com/2022/02/25/bADjTe.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">好高骛远</div><div class="author-info__description">不要你唯唯诺诺,我要你风流快活</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">33</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">36</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/s1314233"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/s1314233" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎光临!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">线程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.1.</span> <span class="toc-text">代码实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9D%97"><span class="toc-number">1.1.1.</span> <span class="toc-text">直接使用线程模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF%E7%BA%BF%E7%A8%8B%E7%B1%BB"><span class="toc-number">1.1.2.</span> <span class="toc-text">继承线程类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B1%E4%BA%AB%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F"><span class="toc-number">1.2.</span> <span class="toc-text">共享全局变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%81"><span class="toc-number">1.3.</span> <span class="toc-text">锁</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">进程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-1"><span class="toc-number">2.1.</span> <span class="toc-text">代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1"><span class="toc-number">2.2.</span> <span class="toc-text">队列实现进程间通信</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B"><span class="toc-number">2.2.1.</span> <span class="toc-text">实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E6%B1%A0"><span class="toc-number">2.2.2.</span> <span class="toc-text">进程池</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%8F%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text">协程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E5%99%A8"><span class="toc-number">3.1.</span> <span class="toc-text">迭代器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%99%A8"><span class="toc-number">3.2.</span> <span class="toc-text">生成器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#yeild%E5%AE%9E%E7%8E%B0%E5%A4%9A%E4%BB%BB%E5%8A%A1"><span class="toc-number">3.2.1.</span> <span class="toc-text">yeild实现多任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gevent%E5%AE%9E%E7%8E%B0%E5%A4%9A%E4%BB%BB%E5%8A%A1"><span class="toc-number">3.2.2.</span> <span class="toc-text">gevent实现多任务</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/31/Servlet%E6%98%AF%E4%BB%80%E4%B9%88/" title="Servlet是什么?">Servlet是什么?</a><time datetime="2022-08-31T06:56:49.000Z" title="发表于 2022-08-31 14:56:49">2022-08-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/04/06/2022-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="计算机网络">计算机网络</a><time datetime="2022-04-06T11:51:26.000Z" title="发表于 2022-04-06 19:51:26">2022-04-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/03/30/2022-hexo%E5%8D%9A%E5%AE%A2/" title="hexo博客">hexo博客</a><time datetime="2022-03-30T05:19:17.000Z" title="发表于 2022-03-30 13:19:17">2022-03-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/03/28/2022-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" title="滑动窗口">滑动窗口</a><time datetime="2022-03-28T07:54:58.000Z" title="发表于 2022-03-28 15:54:58">2022-03-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/03/20/2022-ssm%E5%AD%A6%E4%B9%A0/" title="ssm学习">ssm学习</a><time datetime="2022-03-20T12:52:56.000Z" title="发表于 2022-03-20 20:52:56">2022-03-20</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 好高骛远</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="8368698132" data-server="tencent" data-type="artist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
