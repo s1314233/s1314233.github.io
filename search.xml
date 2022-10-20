@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>爱奇艺日常实习面经</title>
+      <link href="/2022/10/20/%E7%88%B1%E5%A5%87%E8%89%BA%E6%97%A5%E5%B8%B8%E5%AE%9E%E4%B9%A0%E9%9D%A2%E7%BB%8F/"/>
+      <url>/2022/10/20/%E7%88%B1%E5%A5%87%E8%89%BA%E6%97%A5%E5%B8%B8%E5%AE%9E%E4%B9%A0%E9%9D%A2%E7%BB%8F/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="面经"><a href="#面经" class="headerlink" title="面经"></a>面经</h1><ol><li>自我介绍</li><li>hashmap讲一下,具体put过程,怎样判断key值是否相等</li><li>hashmap1.7和1.8有什么区别</li><li>Object包含哪些方法</li><li>提到了wait,和Thread的sleep有什么区别</li><li>wait方法可以用在java中哪些地方</li><li>synchronized原理讲一下,锁升级</li><li>ReentrantLock讲一下,CAS介绍一下</li><li>还有没有锁能提高并发的</li><li>线程池的参数讲一下,参数具体要怎样设置</li><li>线程池在项目里用过吗</li><li>MySQL的索引讲一下,分类</li><li>索引下推</li><li>B+树,B+树里节点存的具体信息</li><li>讲一下数据库四大特性</li><li>redo log和bin log 区别</li><li>redo log 二次提交</li><li>jvm结构,线程共享和独享的部分</li><li>垃圾回收算法描述一下,分别说下优缺点</li><li>spring的IOC说一下</li><li>AOP说一下</li><li>bean的生命周期</li><li>讲一下AOP里的接入点,切面等概念</li><li>项目里用过AOP吗</li></ol><hr><p>反问:</p><ol><li>每周要实习几天</li><li>去了具体做什么</li><li>一共几面(两面),都是技术面吗(是)</li><li>大概什么时候能知道一面结果</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 面经 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 面经 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>消息中间件</title>
       <link href="/2022/10/19/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/"/>
       <url>/2022/10/19/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/</url>
