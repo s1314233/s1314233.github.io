@@ -149,9 +149,9 @@
       
         <tags>
             
-            <tag> docker </tag>
-            
             <tag> redis </tag>
+            
+            <tag> docker </tag>
             
         </tags>
       
