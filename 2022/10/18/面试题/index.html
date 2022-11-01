@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>面试题 | 好高骛远</title><meta name="keywords" content="java,面试"><meta name="author" content="好高骛远"><meta name="copyright" content="好高骛远"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="如何设计哈希函数 易于计算：它应该易于计算，并且不能成为算法本身。 统一分布：它应该在哈希表中提供统一分布，不应导致群集。 较少的冲突：当元素对映射到相同的哈希值时发生冲突。应该避免这些  解决冲突: 开放地址法:线性探测 链地址法 再哈希法 HashMap多线程情况下会出现什么问题 多线程put后可能导致get死循环(put触发多个线程resize,JDK1.7) 多线程put的时候可能导致元素">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>面试题 | 好高骛远</title><meta name="keywords" content="java,面试"><meta name="author" content="好高骛远"><meta name="copyright" content="好高骛远"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="自我介绍您好,我叫段仲浩,现在在北京工业大学读研二,专业是计算机科学与技术,我是一个在学习工作上都比较认真的人,平常遇到问题或困难都会努力解决,学过java的一些基础知识,框架还有一些中间件,平时没事喜欢打打羽毛球. 如何设计哈希函数 易于计算：它应该易于计算，并且不能成为算法本身。 统一分布：它应该在哈希表中提供统一分布，不应导致群集。 较少的冲突：当元素对映射到相同的哈希值时发生冲突。应该避免">
 <meta property="og:type" content="article">
 <meta property="og:title" content="面试题">
 <meta property="og:url" content="http://example.com/2022/10/18/%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
 <meta property="og:site_name" content="好高骛远">
-<meta property="og:description" content="如何设计哈希函数 易于计算：它应该易于计算，并且不能成为算法本身。 统一分布：它应该在哈希表中提供统一分布，不应导致群集。 较少的冲突：当元素对映射到相同的哈希值时发生冲突。应该避免这些  解决冲突: 开放地址法:线性探测 链地址法 再哈希法 HashMap多线程情况下会出现什么问题 多线程put后可能导致get死循环(put触发多个线程resize,JDK1.7) 多线程put的时候可能导致元素">
+<meta property="og:description" content="自我介绍您好,我叫段仲浩,现在在北京工业大学读研二,专业是计算机科学与技术,我是一个在学习工作上都比较认真的人,平常遇到问题或困难都会努力解决,学过java的一些基础知识,框架还有一些中间件,平时没事喜欢打打羽毛球. 如何设计哈希函数 易于计算：它应该易于计算，并且不能成为算法本身。 统一分布：它应该在哈希表中提供统一分布，不应导致群集。 较少的冲突：当元素对映射到相同的哈希值时发生冲突。应该避免">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s4.ax1x.com/2022/02/25/bADyzq.jpg">
 <meta property="article:published_time" content="2022-10-18T13:48:01.000Z">
-<meta property="article:modified_time" content="2022-10-18T14:01:45.659Z">
+<meta property="article:modified_time" content="2022-11-01T01:38:30.986Z">
 <meta property="article:author" content="好高骛远">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="面试">
@@ -54,7 +54,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2022-10-18 22:01:45'
+  postUpdate: '2022-11-01 09:38:30'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -143,7 +143,8 @@
       }
     }
     detectApple()
-    })(window)</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s4.ax1x.com/2022/02/25/bADjTe.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">39</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">41</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s4.ax1x.com/2022/02/25/bADyzq.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">好高骛远</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">面试题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-10-18T13:48:01.000Z" title="发表于 2022-10-18 21:48:01">2022-10-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-18T14:01:45.659Z" title="更新于 2022-10-18 22:01:45">2022-10-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="面试题"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="如何设计哈希函数"><a href="#如何设计哈希函数" class="headerlink" title="如何设计哈希函数"></a>如何设计哈希函数</h1><ul>
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s4.ax1x.com/2022/02/25/bADjTe.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">42</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">41</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">20</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s4.ax1x.com/2022/02/25/bADyzq.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">好高骛远</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">面试题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-10-18T13:48:01.000Z" title="发表于 2022-10-18 21:48:01">2022-10-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-01T01:38:30.986Z" title="更新于 2022-11-01 09:38:30">2022-11-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="面试题"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h1><p>您好,我叫段仲浩,现在在北京工业大学读研二,专业是计算机科学与技术,我是一个在学习工作上都比较认真的人,平常遇到问题或困难都会努力解决,学过java的一些基础知识,框架还有一些中间件,平时没事喜欢打打羽毛球.</p>
+<h1 id="如何设计哈希函数"><a href="#如何设计哈希函数" class="headerlink" title="如何设计哈希函数"></a>如何设计哈希函数</h1><ul>
 <li>易于计算：它应该易于计算，并且不能成为算法本身。</li>
 <li>统一分布：它应该在哈希表中提供统一分布，不应导致群集。</li>
 <li>较少的冲突：当元素对映射到相同的哈希值时发生冲突。应该避免这些</li>
@@ -159,7 +160,263 @@
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (e != <span class="literal">null</span>) &#123;</span><br><span class="line">    src[j] = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
 
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">好高骛远</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/10/18/%E9%9D%A2%E8%AF%95%E9%A2%98/">http://example.com/2022/10/18/面试题/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">好高骛远</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/java/">java</a><a class="post-meta__tags" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a></div><div class="post_share"><div class="social-share" data-image="https://s4.ax1x.com/2022/02/25/bADyzq.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/10/19/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/"><img class="prev-cover" src="https://s4.ax1x.com/2022/02/25/bADyzq.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">消息中间件</div></div></a></div><div class="next-post pull-right"><a href="/2022/10/13/%E9%A3%9E%E9%B1%BC%E7%82%B9%E8%AF%84/"><img class="next-cover" src="https://s4.ax1x.com/2022/02/25/bADyzq.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">飞鱼点评</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/03/17/2022-jvm%E7%AC%94%E8%AE%B0/" title="jvm笔记"><img class="cover" src="https://s4.ax1x.com/2022/02/25/bADyzq.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-17</div><div class="title">jvm笔记</div></div></a></div><div><a href="/2022/03/17/2022-java%E5%9F%BA%E7%A1%80/" title="java基础"><img class="cover" src="https://s4.ax1x.com/2022/02/25/bADyzq.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-17</div><div class="title">java基础</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://s4.ax1x.com/2022/02/25/bADjTe.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">好高骛远</div><div class="author-info__description">不要你唯唯诺诺,我要你风流快活</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">39</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">41</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/s1314233"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/s1314233" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎光临!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">如何设计哈希函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HashMap%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E5%87%BA%E7%8E%B0%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">HashMap多线程情况下会出现什么问题</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/10/20/%E7%88%B1%E5%A5%87%E8%89%BA%E6%97%A5%E5%B8%B8%E5%AE%9E%E4%B9%A0%E9%9D%A2%E7%BB%8F/" title="爱奇艺日常实习面经">爱奇艺日常实习面经</a><time datetime="2022-10-20T10:29:45.000Z" title="发表于 2022-10-20 18:29:45">2022-10-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/10/19/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" title="消息中间件">消息中间件</a><time datetime="2022-10-19T04:53:06.000Z" title="发表于 2022-10-19 12:53:06">2022-10-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/10/18/%E9%9D%A2%E8%AF%95%E9%A2%98/" title="面试题">面试题</a><time datetime="2022-10-18T13:48:01.000Z" title="发表于 2022-10-18 21:48:01">2022-10-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/10/13/%E9%A3%9E%E9%B1%BC%E7%82%B9%E8%AF%84/" title="飞鱼点评">飞鱼点评</a><time datetime="2022-10-13T13:51:36.000Z" title="发表于 2022-10-13 21:51:36">2022-10-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/10/05/docker%E6%90%AD%E5%BB%BAkafka/" title="docker搭建kafka">docker搭建kafka</a><time datetime="2022-10-05T09:36:10.000Z" title="发表于 2022-10-05 17:36:10">2022-10-05</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 好高骛远</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script>function panguFn () {
+<h1 id="评论回复功能设计"><a href="#评论回复功能设计" class="headerlink" title="评论回复功能设计"></a>评论回复功能设计</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zukxu123/article/details/109385764">评论回复功能设计与总结-Java（两层型）_zukxu的博客-CSDN博客_评论功能设计</a></p>
+<h1 id="悲观锁和乐观锁"><a href="#悲观锁和乐观锁" class="headerlink" title="悲观锁和乐观锁"></a>悲观锁和乐观锁</h1><h2 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h2><p>总是假设最坏的情况，每次取数据时都认为其他线程会修改,在对共享数据进行操作时先加锁再操作</p>
+<h2 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h2><p>假设对共享数据的操作不会发生冲突,在更新时会判断其他线程在这之前有没有对数据进行修改,如果冲突，则返回给用户异常信息，让用户决定如何去做。</p>
+<p>CAS+版本号</p>
+<h1 id="创建线程的方式-x2F-多线程的实现方式"><a href="#创建线程的方式-x2F-多线程的实现方式" class="headerlink" title="创建线程的方式&#x2F;多线程的实现方式"></a>创建线程的方式&#x2F;多线程的实现方式</h1><ol>
+<li>重写Thread类的run()方法</li>
+<li>实现Runnable接口传入线程运行<ul>
+<li>实际上Thread类中有一个Runnable target,传入Runnable实际上是覆盖它</li>
+</ul>
+</li>
+<li>实现Callable()接口(加了返回值和异常),覆盖call方法,并结合 Future 实现,</li>
+</ol>
+<p><img src="https://scf-deploy-ap-guangzhou-1301571523.cos.ap-guangzhou.myqcloud.com//blog/zglut4qdvh.png" alt="img"></p>
+<p>4.线程池创建</p>
+<h1 id="ThreadLocal原理"><a href="#ThreadLocal原理" class="headerlink" title="ThreadLocal原理"></a>ThreadLocal原理</h1><p>ThreadLocal类有一个静态内部类ThreadLocalMap类,键是弱引用的Threadlocal类,值就是保存在ThreadLocal的副本对象,每一个Thread对象都会有一个ThreadLocalMap成员，记录该线程在各个ThreadLocal中保存的副本对象</p>
+<p>哈希冲突的解决办法采用了<strong>开放地址法</strong>,ThreadLocal通常存放的数据量不会特别大，并且使用开放地址法（或叫开放寻址法）相对于拉链法而言节省了存储指针的空间</p>
+<h2 id="内存泄漏"><a href="#内存泄漏" class="headerlink" title="内存泄漏"></a>内存泄漏</h2><p>如果一个ThreadLocal不存在外部<strong>强引用</strong>时，Key(ThreadLocal)势必会被GC回收，这样就会导致ThreadLocalMap中key为null， 而value还存在着强引用，只有thead线程退出以后,value的强引用链条才会断掉。</p>
+<p>Thread Ref -&gt; Thread -&gt; ThreaLocalMap -&gt; Entry -&gt; value</p>
+<p>对应的value在下一次ThreadLocalMap调用set(),get(),remove()的时候会被清除</p>
+<h2 id="内存泄漏场景"><a href="#内存泄漏场景" class="headerlink" title="内存泄漏场景"></a>内存泄漏场景</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/luzhensmart/article/details/86701039">java内存泄漏的几种情景_这瓜保熟么的博客-CSDN博客</a></p>
+<ol>
+<li><p>未关闭的资源类</p>
+</li>
+<li><p>静态集合引起的内存泄漏</p>
+</li>
+<li><p>监听器(在释放对象的时候却没有去删除这些监听器)</p>
+</li>
+<li><p>内部类和外部模块的引用</p>
+</li>
+<li><p>单例模式</p>
+</li>
+<li><p>集合里面的对象属性被修改后,再调用remove()方法时不起作用(remove()是根据hashCode进行的，但修改了对象，对象的hashCode会发生改变，但存入<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E9%9B%86%E5%90%88&spm=1001.2101.3001.7020">集合</a>时对应的hashCode没有变，所以remove（）不生效)</p>
+</li>
+</ol>
+<h2 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h2><ol>
+<li>代替显示的参数传递</li>
+<li>全局存储用户信息(在拦截器的业务中， 获取到保存的用户信息，然后存入ThreadLocal)</li>
+<li>解决线程安全问题,</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在Spring项目中Dao层中装配的Connection肯定是线程安全的，其解决方案就是采用ThreadLocal方法，当每个请求线程使用Connection的时候， 都会从ThreadLocal获取一次，如果为null，说明没有进行过数据库连接，连接后存入ThreadLocal中，如此一来，每一个请求线程都保存有一份 自己的Connection。</span><br></pre></td></tr></table></figure>
+
+<h1 id="线程池运行过程"><a href="#线程池运行过程" class="headerlink" title="线程池运行过程"></a>线程池运行过程</h1><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6866054685044768782">三分钟弄懂线程池执行过程 - 掘金 (juejin.cn)</a></p>
+<p><strong>线程池调用execute</strong>—&gt;<strong>创建Worker（设置属性thead、firstTask）</strong>—&gt;**worker.thread.start()**—&gt;**实际上调用的是worker.run()**—&gt;**线程池的runWorker(worker)**—&gt;<strong>worker.firstTask.run()</strong>(如果firstTask为null就从等待队列中拉取一个)。</p>
+<p><img src="https://scf-deploy-ap-guangzhou-1301571523.cos.ap-guangzhou.myqcloud.com//blog/63e55d8b57ea479c82a3d8e454fe4c32~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" alt="img"></p>
+<p><img src="https://scf-deploy-ap-guangzhou-1301571523.cos.ap-guangzhou.myqcloud.com//blog/f9c93d91187041a3a0f33b0627b28cb2~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" alt="img"></p>
+<p><img src="https://scf-deploy-ap-guangzhou-1301571523.cos.ap-guangzhou.myqcloud.com//blog/cd1dd21fd9aa46c9b51c67760ee17e26~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" alt="img"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title function_">runWorker</span><span class="params">(Worker w)</span> &#123;</span><br><span class="line">    <span class="type">Runnable</span> <span class="variable">task</span> <span class="operator">=</span> w.firstTask;</span><br><span class="line">    <span class="comment">//这个 while 循环有个 getTask 方法，getTask 的主要作用是阻塞从队列中拿任务出来，如果队列中有任务，那么就可以拿出来执行，如果队列中没有任务，这个线程会一直阻塞到有任务为止（或者超时阻塞）</span></span><br><span class="line">    <span class="keyword">while</span> (task != <span class="literal">null</span> || (task = getTask()) != <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            task.run();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            task = <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="线程的锁"><a href="#线程的锁" class="headerlink" title="线程的锁"></a>线程的锁</h1><p>一种是关键字：synchronized，一种是concurrent包下的lock锁</p>
+<ol>
+<li>synchronized</li>
+<li>ReentrantLock</li>
+<li>ReentrantReadWriteLocK</li>
+</ol>
+<h2 id="Lock的底层原理"><a href="#Lock的底层原理" class="headerlink" title="Lock的底层原理"></a>Lock的底层原理</h2><p>Lock底层实现基于AQS实现，采用线程独占的方式，在硬件层面依赖特殊的CPU指令（CAS）。</p>
+<p>简单来说，ReenTrantLock的实现是一种<strong>自旋锁</strong>，通过循环调用CAS操作来实现加锁。它的性能比较好也是因为<strong>避免了使线程进入内核态的阻塞状态。</strong>想尽办法避免线程进入内核的阻塞状态是我们去分析和理解锁设计的关键钥匙</p>
+<h1 id="AQS"><a href="#AQS" class="headerlink" title="AQS"></a>AQS</h1><p>AQS是用CLH队列锁实现的，即：将暂时获取不到锁的线程加入到等待（阻塞）队列中。</p>
+<p>AQS是将每一条请求共享资源的被阻塞的等待线程封装成一个CLH锁队列的一个节点，来实现锁的分配</p>
+<p>AQS就是基于CLH队列，用volatile修饰共享变量state状态符，线程通过CAS去改变状态符，成功则获取锁成功，失败进入CLH队列，等待被唤醒</p>
+<p>AQS底层使用了模板方法模式</p>
+<p>AQS底层数据结构是双向链表，锁的存储结构就两个东西 : 双向链表 + “int类型状态”</p>
+<h1 id="双亲委派模型好处"><a href="#双亲委派模型好处" class="headerlink" title="双亲委派模型好处"></a>双亲委派模型好处</h1><p>避免重复加载 + 避免核心类篡改</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">了不让我们写System类，类加载采用委托机制，这样可以保证爸爸们优先，爸爸们能找到的类，儿子就没有机会加载。而System类是Bootstrap加载器加载的，就算自己重写，也总是使用Java系统提供的System，自己写的System类根本没有机会得到加载。</span><br></pre></td></tr></table></figure>
+
+<h1 id="类加载的过程"><a href="#类加载的过程" class="headerlink" title="类加载的过程"></a>类加载的过程</h1><p><img src="https://scf-deploy-ap-guangzhou-1301571523.cos.ap-guangzhou.myqcloud.com//blog/v2-ecf6c3d0f5146029e9693d6223d23afb_r.jpg" alt="img"></p>
+<h2 id="初始化阶段"><a href="#初始化阶段" class="headerlink" title="初始化阶段"></a>初始化阶段</h2><p>●初始化阶段就是执行类构造器方法<clinit>()的过程。<br>●此方法不需定义，是javac编译器自动收集类中的所有类变量的赋值动作和静态代码块中的语句合并而来。<br>●构造器方法中指令按语句在源文件中出现的顺序执行。<br>●<clinit>()不同于类的构造器。（关联：构造器是虚拟机视角下的<init>()）<br>●若该类具有父类，JVM会保证子类的<clinit>()执行前，父类的<clinit>()已经执行完毕。<br>●虚拟机必须保证一个类的<clinit>()方法在多线程下被同步加锁。</p>
+<h1 id="垃圾处理器"><a href="#垃圾处理器" class="headerlink" title="垃圾处理器"></a>垃圾处理器</h1><h2 id="垃圾回收算法"><a href="#垃圾回收算法" class="headerlink" title="垃圾回收算法"></a>垃圾回收算法</h2><h3 id="标记清除算法"><a href="#标记清除算法" class="headerlink" title="标记清除算法"></a>标记清除算法</h3><p>好处:</p>
+<ol>
+<li>实现起来比较简单</li>
+</ol>
+<p>缺点:</p>
+<ol>
+<li><p>会有内存碎片,需要维护一个空闲列表</p>
+</li>
+<li><p>会有停顿操作</p>
+</li>
+<li><p>效率不是很高</p>
+</li>
+</ol>
+<h3 id="复制算法"><a href="#复制算法" class="headerlink" title="复制算法"></a>复制算法</h3><p>好处: </p>
+<ol>
+<li>没有内存碎片</li>
+<li>不需要标记清除过程,实现高效,运行高效</li>
+</ol>
+<p>缺点:</p>
+<ol>
+<li>浪费一半的内存空间</li>
+</ol>
+<h3 id="标记压缩算法"><a href="#标记压缩算法" class="headerlink" title="标记压缩算法"></a>标记压缩算法</h3><p>优点:</p>
+<ol>
+<li>没有内存碎片</li>
+<li>不需要浪费一半内存空间</li>
+</ol>
+<p>缺点:</p>
+<ol>
+<li>会有停顿</li>
+<li>效率没有复制算法高</li>
+<li>移动对象时,如果对象被引用,还要调整引用的地址</li>
+</ol>
+<h2 id="垃圾标记算法"><a href="#垃圾标记算法" class="headerlink" title="垃圾标记算法"></a>垃圾标记算法</h2><ol>
+<li><p>引用计数算法</p>
+</li>
+<li><p>可达性分析算法</p>
+</li>
+</ol>
+<h2 id="cms垃圾回收的过程"><a href="#cms垃圾回收的过程" class="headerlink" title="cms垃圾回收的过程"></a>cms垃圾回收的过程</h2><p>1.初始标记,标记GCRoot能直接关联到的对象,一旦标记完成,恢复运行</p>
+<p>2.并发标记:从GCRoot能直接关联到的1对象出发,遍历整个对象图,这个过程不需要暂停用户线程,可以与垃圾收集线程一起并发运行</p>
+<p>3.重新标记:有与用户线程和垃圾回收线程并发工作,因此需要重新标记并发期间发生改动的那一部分对象,会需要停顿.</p>
+<p>4.并发清除:清理掉之前标记的已经死亡的对象,释放内存空间,也是与用户线程并发.</p>
+<p>cms并发标记时.用户线程也需要运行,为保证应用程序有足够内存可用,因此当堆内存使用率达到某一阈值时，便开始进行回收</p>
+<h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><h2 id="六大原则"><a href="#六大原则" class="headerlink" title="六大原则"></a>六大原则</h2><ol>
+<li>单一职责原则</li>
+<li>依赖倒置原则</li>
+<li>迪米特法则(一个对象应当对其他对象尽可能少的了解。不和陌生人说话。)</li>
+<li>开闭原则</li>
+<li>里氏替换原则</li>
+<li>接口隔离原则</li>
+</ol>
+<h2 id="spring中的设计模式"><a href="#spring中的设计模式" class="headerlink" title="spring中的设计模式"></a>spring中的设计模式</h2><ol>
+<li>工厂模式</li>
+<li>单例模式</li>
+<li>适配器模式</li>
+<li>模板方法</li>
+<li>观察者模式</li>
+<li>代理模式</li>
+</ol>
+<h1 id="mq之间的对比"><a href="#mq之间的对比" class="headerlink" title="mq之间的对比"></a>mq之间的对比</h1><ol>
+<li><p>单机吞吐量</p>
+</li>
+<li><p>topic数量对吞吐量的影响</p>
+</li>
+<li><p>时效性</p>
+</li>
+<li><p>可用性</p>
+</li>
+<li><p>消息可靠性</p>
+</li>
+<li><p>功能支持</p>
+</li>
+</ol>
+<p><img src="https://scf-deploy-ap-guangzhou-1301571523.cos.ap-guangzhou.myqcloud.com//blog/image-20221031150525952.png" alt="image-20221031150525952"></p>
+<p>实际使用场景对比：</p>
+<p><strong>RabbitMq</strong></p>
+<ul>
+<li>RabbitMQ 的消息应当尽可能的小，并且只用来处理实时且要高可靠性的消息。</li>
+<li>消费者和生产者的能力尽量对等，否则消息堆积会严重影响 RabbitMQ 的性能。</li>
+<li>集群部署，使用热备，保证消息的可靠性。</li>
+<li>erlang 语言开发，性能极其好，延时很低；但是不容易深入研究，无法进行扩展，只能等待社区更新。</li>
+<li>对于中小企业，是最好的选择。</li>
+</ul>
+<p><strong>RocketMQ</strong></p>
+<ul>
+<li>Java 开发的，可以深入学习，定制自己公司的MQ，文档相对来说简单一些。</li>
+<li>接口简单易用，阿里开发大规模应用，值得信赖。</li>
+<li>可以支撑大规模的 topic 数量，支持复杂 MQ 业务场景</li>
+<li>社区活跃度一般，万一不维护，需要自己公司研发。所以没有技术实力的不推荐使用。</li>
+</ul>
+<p><strong>Kafka</strong></p>
+<ul>
+<li>应当有一个非常好的运维监控系统，不单单要监控 Kafka 本身，还要监控 Zookeeper。( kafka 强烈的依赖于zookeeper，如果 zookeeper 挂掉了，那么 Kafka 也不行了)</li>
+<li>对消息顺序不依赖，且不是那么实时的系统。</li>
+<li>有可能消息重复消费，对消息丢失并不那么敏感的系统。</li>
+<li>天然适合大数据实时计算以及日志收集</li>
+</ul>
+<h1 id="一条Update语句执行过程"><a href="#一条Update语句执行过程" class="headerlink" title="一条Update语句执行过程"></a>一条Update语句执行过程</h1><p>具体更新一条记录 UPDATE t_user SET name &#x3D; ‘xiaolin’ WHERE id &#x3D; 1; 的流程如下:</p>
+<ol>
+<li>执行器负责具体执行，会调用存储引擎的接口，通过主键索引树搜索获取 id &#x3D; 1 这一行记录：<ul>
+<li>如果 id&#x3D;1 这一行所在的数据页本来就在 buffer pool 中，就直接返回给执行器更新；</li>
+<li>如果记录不在 buffer pool，将数据页从磁盘读入到 buffer pool，返回记录给执行器。</li>
+</ul>
+</li>
+<li>执行器得到聚簇索引记录后，会看一下更新前的记录和更新后的记录是否一样：<ul>
+<li>如果一样的话就不进行后续更新流程；</li>
+<li>如果不一样的话就把更新前的记录和更新后的记录都当作参数传给 InnoDB 层，让 InnoDB 真正的执行更新记录的操作；</li>
+</ul>
+</li>
+<li>开启事务， InnoDB 层更新记录前，首先要记录相应的 undo log，因为这是更新操作，需要把被更新的列的旧值记下来，也就是要生成一条 undo log，undo log 会写入 Buffer Pool 中的 Undo 页面，不过在内存修改该 Undo 页面后，需要记录对应的 redo log。</li>
+<li>InnoDB 层开始更新记录，会先更新内存（同时标记为脏页），然后将记录写到 redo log 里面，这个时候更新就算完成了。为了减少磁盘I&#x2F;O，不会立即将脏页写入磁盘，后续由后台线程选择一个合适的时机将脏页写入到磁盘。这就是 WAL 技术，MySQL 的写操作并不是立刻写到磁盘上，而是先写 redo 日志，然后在合适的时间再将修改的行数据写到磁盘上。</li>
+<li>至此，一条记录更新完了。</li>
+<li>在一条更新语句执行完成后，然后开始记录该语句对应的 binlog，此时记录的 binlog 会被保存到 binlog cache，并没有刷新到硬盘上的 binlog 文件，在事务提交时才会统一将该事务运行过程中的所有 binlog 刷新到硬盘。</li>
+<li>事务提交（为了方便说明，这里不说组提交的过程，只说两阶段提交）：<ul>
+<li>prepare 阶段：将 redo log 对应的事务状态设置为 prepare，然后将 redo log 刷新到硬盘；</li>
+<li>commit 阶段：将 binlog 刷新到磁盘，接着调用引擎的提交事务接口，将 redo log 状态设置为 commit（将事务设置为 commit 状态后，刷入到磁盘 redo log 文件）；</li>
+</ul>
+</li>
+</ol>
+<h1 id="锁升级"><a href="#锁升级" class="headerlink" title="锁升级"></a>锁升级</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45606067/article/details/126766885">锁升级过程（无锁、偏向锁、轻量级锁、重量级锁）_七月J的博客-CSDN博客_锁升级过程</a></p>
+<h1 id="SpringBoot自动装配"><a href="#SpringBoot自动装配" class="headerlink" title="SpringBoot自动装配"></a>SpringBoot自动装配</h1><p>自动装配spring其实也有,springboot在其基础上,利用SPI机制,进行了进一步优化</p>
+<p>springboot再启动时会对jar包中的META-INF&#x2F;spring.factories文件,将其中的配置类型信息加载到Spring容器</p>
+<p>没有 Spring Boot 的情况下，如果我们需要引入第三方依赖，需要手动配置，非常麻烦。但是，Spring Boot 中，我们直接引入一个 starter 即可。</p>
+<p>引入 starter 之后，我们通过少量注解和一些简单的配置就能使用第三方组件提供的功能了。</p>
+<p>自动装配可以简单理解为：<strong>通过注解或者一些简单的配置就能在 Spring Boot 的帮助下实现某块功能。</strong></p>
+<h1 id="Redis的主从复制怎么实现"><a href="#Redis的主从复制怎么实现" class="headerlink" title="Redis的主从复制怎么实现"></a>Redis的主从复制怎么实现</h1><h2 id="全量复制"><a href="#全量复制" class="headerlink" title="全量复制"></a>全量复制</h2><ol>
+<li>slvae向master发送同步请求建立连接,包含自己的replacation id和offest(slave本身也是master,有自己的id和offest)</li>
+<li>master发现不一样,将自己的replacation id和offest发送给slave,slave保存版本信息</li>
+<li>master执行bgsave命令生成RDB文件发送给slave,同时在生成RDB文件时,将生成RDB文件时执行的命令保存到repl_backlog</li>
+<li>RDB清空本地文件,保存RDB文件</li>
+<li>master发送repl_backlog,slave执行repl_backlog中的命令</li>
+</ol>
+<p><img src="https://scf-deploy-ap-guangzhou-1301571523.cos.ap-guangzhou.myqcloud.com//blog/image-20221031214430984.png" alt="image-20221031214430984"></p>
+<h2 id="增量复制"><a href="#增量复制" class="headerlink" title="增量复制"></a>增量复制</h2><ol>
+<li>slave发送replicaof命令发送连接请求,带着自己的replacation id和offest</li>
+<li>master判断id一致,发送continue命令,就将repl_backlog中offset后的命令发送给slave</li>
+<li>slave执行发送过来中的命令</li>
+</ol>
+<p><img src="https://scf-deploy-ap-guangzhou-1301571523.cos.ap-guangzhou.myqcloud.com//blog/image-20221031214704743.png" alt="image-20221031214704743"></p>
+<h2 id="repl-backlog"><a href="#repl-backlog" class="headerlink" title="repl_backlog"></a>repl_backlog</h2><p>是一个环形数组,master和slave都在其中有offest</p>
+<h1 id="RocketMQ"><a href="#RocketMQ" class="headerlink" title="RocketMQ"></a>RocketMQ</h1><ol>
+<li>NameServer:整个MQ集群提供服务协调与治理，具体就是记录维护Topic、Broker的信息，及监控Broker的运行状态，Name Server是一个几乎无状态节点，可集群部署，节点之间无任何信息同步，相当于注册中心.</li>
+<li>Broker:消息服务器，作为server提供消息核心服务，每个Broker与Name Server集群中的所有节点建立长连接，定时注册Topic信息到所有Name Server；</li>
+<li>Producer:消息生产者，业务的发起方，负责生产消息传输给broker.</li>
+<li>Consumer:消息消费者，业务的处理方，负责从broker获取消息并进行业务逻辑处理</li>
+</ol>
+<h1 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h1><ol>
+<li>Exchange:交换机的作用就是根据路由规则，将消息转发到对应的队列上。</li>
+<li>Broker:消息服务器，作为server提供消息核心服务</li>
+<li>Channel:信道是建立在真实TCP连接内的虚拟连接</li>
+<li>Routing key:生产者将消息发送到交换机时，会在消息头上携带一个 key，这个 key就是routing key，来指定这个消息的路由规则。</li>
+<li>Routing key:生产者将消息发送到交换机时，会在消息头上携带一个 key，这个 key就是routing key，来指定这个消息的路由规则。</li>
+</ol>
+<h1 id="进程和线程的区别"><a href="#进程和线程的区别" class="headerlink" title="进程和线程的区别"></a>进程和线程的区别</h1><ol>
+<li>进程是资源分配的基本单位,一个程序至少要一个进程,一个进程至少要一个线程</li>
+<li>进程拥有独立的内存空间,多个线程共享进程的内存和资源</li>
+<li>线程是cpu调度和分派的基本单位,是能够独立运行的基本单元</li>
+<li>同一进程的多个线程能并发执行</li>
+</ol>
+<h1 id="线程池在项目中的运用"><a href="#线程池在项目中的运用" class="headerlink" title="线程池在项目中的运用"></a>线程池在项目中的运用</h1><p>1.使用线程池，将同步方法放入队列中，然后直接返回响应，会极大的提高接口的响应速度</p>
+<h1 id="get和post的区别"><a href="#get和post的区别" class="headerlink" title="get和post的区别"></a>get和post的区别</h1><ul>
+<li>GET在浏览器回退时是无害的，而POST会再次提交请求。</li>
+<li>GET产生的URL地址可以被Bookmark，而POST不可以。</li>
+<li>GET请求会被浏览器主动cache，而POST不会，除非手动设置。</li>
+<li>GET请求只能进行url编码，而POST支持多种编码方式。</li>
+<li>GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。</li>
+<li><strong>GET请求在URL中传送的参数是有长度限制的，而POST没有。</strong></li>
+<li>对参数的数据类型，GET只接受ASCII字符，而POST没有限制。</li>
+<li><strong>GET比POST更不安全</strong>，因为参数直接暴露在URL上，所以不能用来传递敏感信息。</li>
+<li>GET参数通过URL传递，POST放在Request body中</li>
+</ul>
+<h1 id="什么是Mybatics"><a href="#什么是Mybatics" class="headerlink" title="什么是Mybatics"></a>什么是Mybatics</h1><ol>
+<li>MyBatis 是一款优秀的持久层框架，它支持自定义 SQL、存储过程以及高级映射。</li>
+<li>MyBatis 免除了几乎所有的 JDBC 代码以及设置参数和获取结果集的工作。</li>
+<li>MyBatis 免除了几乎所有的 JDBC 代码以及设置参数和获取结果集的工作。</li>
+</ol>
+<h1 id="JVM调优参数"><a href="#JVM调优参数" class="headerlink" title="JVM调优参数"></a>JVM调优参数</h1><p>-Xms12g：初始化堆内存大小为12GB。</p>
+<p>-Xmx12g：堆内存最大值为12GB 。</p>
+<p>-Xmn2400m：新生代大小为2400MB，包括 Eden区与2个Survivor区。</p>
+<p>-XX:SurvivorRatio&#x3D;1：Eden区与一个Survivor区比值为1:1。</p>
+<p>-XX:MaxDirectMemorySize&#x3D;1G：直接内存。报java.lang.OutOfMemoryError: Direct buffer memory 异常可以上调这个值。</p>
+<p>-XX:+DisableExplicitGC：禁止运行期显式地调用 System.gc() 来触发fulll GC。</p>
+<p>注意: Java RMI的定时GC触发机制可通过配置-Dsun.rmi.dgc.server.gcInterval&#x3D;86400来控制触发的时间。</p>
+<p>-XX:CMSInitiatingOccupancyFraction&#x3D;60：老年代内存回收阈值，默认值为68。</p>
+<p>-XX:ConcGCThreads&#x3D;4：CMS垃圾回收器并行线程线，推荐值为CPU核心数。</p>
+<p>-XX:ParallelGCThreads&#x3D;8：新生代并行收集器的线程数。</p>
+<p>-XX:MaxTenuringThreshold&#x3D;10：设置垃圾最大年龄。如果设置为0的话，则年轻代对象不经过Survivor区，直接进入年老代。对于年老代比较多的应用，可以提高效率。如果将此值设置为一个较大值，则年轻代对象会在Survivor区进行多次复制，这样可以增加对象再年轻代的存活时间，增加在年轻代即被回收的概论。</p>
+<p>-XX:CMSFullGCsBeforeCompaction&#x3D;4：指定进行多少次fullGC之后，进行tenured区 内存空间压缩。</p>
+<p>-XX:CMSMaxAbortablePrecleanTime&#x3D;500：当abortable-preclean预清理阶段执行达到这个时间时就会结束。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">好高骛远</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/10/18/%E9%9D%A2%E8%AF%95%E9%A2%98/">http://example.com/2022/10/18/面试题/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">好高骛远</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/java/">java</a><a class="post-meta__tags" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a></div><div class="post_share"><div class="social-share" data-image="https://s4.ax1x.com/2022/02/25/bADyzq.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/10/19/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/"><img class="prev-cover" src="https://s4.ax1x.com/2022/02/25/bADyzq.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">消息中间件</div></div></a></div><div class="next-post pull-right"><a href="/2022/10/13/%E9%A3%9E%E9%B1%BC%E7%82%B9%E8%AF%84/"><img class="next-cover" src="https://s4.ax1x.com/2022/02/25/bADyzq.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">飞鱼点评</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/03/17/2022-java%E5%9F%BA%E7%A1%80/" title="java基础"><img class="cover" src="https://s4.ax1x.com/2022/02/25/bADyzq.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-17</div><div class="title">java基础</div></div></a></div><div><a href="/2022/03/17/2022-jvm%E7%AC%94%E8%AE%B0/" title="jvm笔记"><img class="cover" src="https://s4.ax1x.com/2022/02/25/bADyzq.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-17</div><div class="title">jvm笔记</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://s4.ax1x.com/2022/02/25/bADjTe.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">好高骛远</div><div class="author-info__description">不要你唯唯诺诺,我要你风流快活</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">42</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">41</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">20</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/s1314233"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/s1314233" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎光临!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%87%AA%E6%88%91%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">自我介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text">如何设计哈希函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HashMap%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E5%87%BA%E7%8E%B0%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">HashMap多线程情况下会出现什么问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%84%E8%AE%BA%E5%9B%9E%E5%A4%8D%E5%8A%9F%E8%83%BD%E8%AE%BE%E8%AE%A1"><span class="toc-number">4.</span> <span class="toc-text">评论回复功能设计</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%82%B2%E8%A7%82%E9%94%81%E5%92%8C%E4%B9%90%E8%A7%82%E9%94%81"><span class="toc-number">5.</span> <span class="toc-text">悲观锁和乐观锁</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%82%B2%E8%A7%82%E9%94%81"><span class="toc-number">5.1.</span> <span class="toc-text">悲观锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%90%E8%A7%82%E9%94%81"><span class="toc-number">5.2.</span> <span class="toc-text">乐观锁</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%96%B9%E5%BC%8F-x2F-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="toc-number">6.</span> <span class="toc-text">创建线程的方式&#x2F;多线程的实现方式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ThreadLocal%E5%8E%9F%E7%90%86"><span class="toc-number">7.</span> <span class="toc-text">ThreadLocal原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F"><span class="toc-number">7.1.</span> <span class="toc-text">内存泄漏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E5%9C%BA%E6%99%AF"><span class="toc-number">7.2.</span> <span class="toc-text">内存泄漏场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">7.3.</span> <span class="toc-text">适用场景</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E8%BF%90%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="toc-number">8.</span> <span class="toc-text">线程池运行过程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E7%9A%84%E9%94%81"><span class="toc-number">9.</span> <span class="toc-text">线程的锁</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Lock%E7%9A%84%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86"><span class="toc-number">9.1.</span> <span class="toc-text">Lock的底层原理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AQS"><span class="toc-number">10.</span> <span class="toc-text">AQS</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B%E5%A5%BD%E5%A4%84"><span class="toc-number">11.</span> <span class="toc-text">双亲委派模型好处</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="toc-number">12.</span> <span class="toc-text">类加载的过程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E9%98%B6%E6%AE%B5"><span class="toc-number">12.1.</span> <span class="toc-text">初始化阶段</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%A4%84%E7%90%86%E5%99%A8"><span class="toc-number">13.</span> <span class="toc-text">垃圾处理器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95"><span class="toc-number">13.1.</span> <span class="toc-text">垃圾回收算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4%E7%AE%97%E6%B3%95"><span class="toc-number">13.1.1.</span> <span class="toc-text">标记清除算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95"><span class="toc-number">13.1.2.</span> <span class="toc-text">复制算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E8%AE%B0%E5%8E%8B%E7%BC%A9%E7%AE%97%E6%B3%95"><span class="toc-number">13.1.3.</span> <span class="toc-text">标记压缩算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E6%A0%87%E8%AE%B0%E7%AE%97%E6%B3%95"><span class="toc-number">13.2.</span> <span class="toc-text">垃圾标记算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cms%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="toc-number">13.3.</span> <span class="toc-text">cms垃圾回收的过程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">14.</span> <span class="toc-text">设计模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E5%A4%A7%E5%8E%9F%E5%88%99"><span class="toc-number">14.1.</span> <span class="toc-text">六大原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#spring%E4%B8%AD%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">14.2.</span> <span class="toc-text">spring中的设计模式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mq%E4%B9%8B%E9%97%B4%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="toc-number">15.</span> <span class="toc-text">mq之间的对比</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E6%9D%A1Update%E8%AF%AD%E5%8F%A5%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="toc-number">16.</span> <span class="toc-text">一条Update语句执行过程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%94%81%E5%8D%87%E7%BA%A7"><span class="toc-number">17.</span> <span class="toc-text">锁升级</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D"><span class="toc-number">18.</span> <span class="toc-text">SpringBoot自动装配</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis%E7%9A%84%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0"><span class="toc-number">19.</span> <span class="toc-text">Redis的主从复制怎么实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%A8%E9%87%8F%E5%A4%8D%E5%88%B6"><span class="toc-number">19.1.</span> <span class="toc-text">全量复制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A2%9E%E9%87%8F%E5%A4%8D%E5%88%B6"><span class="toc-number">19.2.</span> <span class="toc-text">增量复制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#repl-backlog"><span class="toc-number">19.3.</span> <span class="toc-text">repl_backlog</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RocketMQ"><span class="toc-number">20.</span> <span class="toc-text">RocketMQ</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RabbitMQ"><span class="toc-number">21.</span> <span class="toc-text">RabbitMQ</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">22.</span> <span class="toc-text">进程和线程的区别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%9C%A8%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E8%BF%90%E7%94%A8"><span class="toc-number">23.</span> <span class="toc-text">线程池在项目中的运用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#get%E5%92%8Cpost%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">24.</span> <span class="toc-text">get和post的区别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFMybatics"><span class="toc-number">25.</span> <span class="toc-text">什么是Mybatics</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JVM%E8%B0%83%E4%BC%98%E5%8F%82%E6%95%B0"><span class="toc-number">26.</span> <span class="toc-text">JVM调优参数</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/10/31/%E5%BF%AB%E6%89%8B%E6%97%A5%E5%B8%B8%E5%AE%9E%E4%B9%A0%E9%9D%A2%E7%BB%8F/" title="快手日常实习面经">快手日常实习面经</a><time datetime="2022-10-31T10:58:30.000Z" title="发表于 2022-10-31 18:58:30">2022-10-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/10/28/%E9%9D%A2%E7%BB%8F%E6%80%BB%E7%BB%93/" title="面经总结">面经总结</a><time datetime="2022-10-28T08:08:32.000Z" title="发表于 2022-10-28 16:08:32">2022-10-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/10/26/spring%E7%AC%94%E8%AE%B0/" title="spring笔记">spring笔记</a><time datetime="2022-10-26T06:59:09.000Z" title="发表于 2022-10-26 14:59:09">2022-10-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/10/20/%E7%88%B1%E5%A5%87%E8%89%BA%E6%97%A5%E5%B8%B8%E5%AE%9E%E4%B9%A0%E9%9D%A2%E7%BB%8F/" title="爱奇艺日常实习面经">爱奇艺日常实习面经</a><time datetime="2022-10-20T10:29:45.000Z" title="发表于 2022-10-20 18:29:45">2022-10-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/10/19/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" title="消息中间件">消息中间件</a><time datetime="2022-10-19T04:53:06.000Z" title="发表于 2022-10-19 12:53:06">2022-10-19</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 好高骛远</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script>function panguFn () {
   if (typeof pangu === 'object') pangu.autoSpacingPage()
   else {
     getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')

@@ -1,0 +1,331 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>spring笔记 | 好高骛远</title><meta name="keywords" content="spring"><meta name="author" content="好高骛远"><meta name="copyright" content="好高骛远"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="单例池使用concurrenthashmap @PostConstruct遍历方法判断是否有该注解,执行注解的方法 初始化继承InitializingBean,初始化时判断Bean是否是这种类型的,强转执行注解的方法 初始化和实例化初始化如上,实例化执行构造方法 初始化后可用于实现AOP,在放入单例池前执行 推断构造方法多种构造方法执行无参构造方法,或@Autowire指定的构造方法,多种构造方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spring笔记">
+<meta property="og:url" content="http://example.com/2022/10/26/spring%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="好高骛远">
+<meta property="og:description" content="单例池使用concurrenthashmap @PostConstruct遍历方法判断是否有该注解,执行注解的方法 初始化继承InitializingBean,初始化时判断Bean是否是这种类型的,强转执行注解的方法 初始化和实例化初始化如上,实例化执行构造方法 初始化后可用于实现AOP,在放入单例池前执行 推断构造方法多种构造方法执行无参构造方法,或@Autowire指定的构造方法,多种构造方法">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s4.ax1x.com/2022/02/25/bADyzq.jpg">
+<meta property="article:published_time" content="2022-10-26T06:59:09.000Z">
+<meta property="article:modified_time" content="2022-10-27T08:08:31.698Z">
+<meta property="article:author" content="好高骛远">
+<meta property="article:tag" content="spring">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s4.ax1x.com/2022/02/25/bADyzq.jpg"><link rel="shortcut icon" href="https://s4.ax1x.com/2022/02/25/bABF3t.png"><link rel="canonical" href="http://example.com/2022/10/26/spring%E7%AC%94%E8%AE%B0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'spring笔记',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-10-27 16:08:31'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s4.ax1x.com/2022/02/25/bADjTe.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">42</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">41</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">20</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s4.ax1x.com/2022/02/25/bADyzq.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">好高骛远</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">spring笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-10-26T06:59:09.000Z" title="发表于 2022-10-26 14:59:09">2022-10-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-27T08:08:31.698Z" title="更新于 2022-10-27 16:08:31">2022-10-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/spring/">spring</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="spring笔记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="单例池"><a href="#单例池" class="headerlink" title="单例池"></a>单例池</h1><p>使用concurrenthashmap</p>
+<h1 id="PostConstruct"><a href="#PostConstruct" class="headerlink" title="@PostConstruct"></a>@PostConstruct</h1><p>遍历方法判断是否有该注解,执行注解的方法</p>
+<h1 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h1><p>继承InitializingBean,初始化时判断Bean是否是这种类型的,强转执行注解的方法</p>
+<h1 id="初始化和实例化"><a href="#初始化和实例化" class="headerlink" title="初始化和实例化"></a>初始化和实例化</h1><p>初始化如上,实例化执行构造方法</p>
+<h1 id="初始化后"><a href="#初始化后" class="headerlink" title="初始化后"></a>初始化后</h1><p>可用于实现AOP,在放入单例池前执行</p>
+<h1 id="推断构造方法"><a href="#推断构造方法" class="headerlink" title="推断构造方法"></a>推断构造方法</h1><p>多种构造方法执行无参构造方法,或@Autowire指定的构造方法,多种构造方法不指定也无无参,报错</p>
+<h1 id="AOP底层"><a href="#AOP底层" class="headerlink" title="AOP底层"></a>AOP底层</h1><p>JDK动态代理和cjlib动态代理</p>
+<p>在代理对象中设置一个目标对象的引用,代理对象在重写方法中,用target调用目标对象的方法</p>
+<h1 id="事务底层"><a href="#事务底层" class="headerlink" title="事务底层"></a>事务底层</h1><ol>
+<li>代理对象在重写方法中,先判断是否有@Transcational注解</li>
+<li>有的话创建事务管理器,事务管理器新建一个数据库连接ThreadLocal&lt;DateSource,conn&gt;,同一个数据源拿到的是同一个连接</li>
+<li>关闭连接的自动提交</li>
+<li>调用普通方法中的jdbctemplate就使用这个连接</li>
+<li>自动提交</li>
+</ol>
+<h2 id="事务失效"><a href="#事务失效" class="headerlink" title="事务失效"></a>事务失效</h2><p>在代理对象重写的方法中调用目标对象的方法,目标对象的方法是没有事物的</p>
+<p>可以注入自己</p>
+<h2 id="Configuration"><a href="#Configuration" class="headerlink" title="@Configuration"></a>@Configuration</h2><p>加了@Configuration首先是一个Bean,并且是一个配置Bean</p>
+<p>加了该注解的类也是一个代理对象,使用cglib,但调用目标对象时使用的是super.方法名(),子类重写了父类方法,执行子类方法</p>
+<p>在事务管理器和JdbcTemplate在@Bean中都要调用datasource(),如果不加@Configuration,则每次创建新对象,加了就会去单例池找,这样数据库连接关闭自动提交就能用到了</p>
+<p><img src="https://scf-deploy-ap-guangzhou-1301571523.cos.ap-guangzhou.myqcloud.com//blog/image-20221027133234068.png" alt="image-20221027133234068"></p>
+<p>@Import导入的类是配置Bean</p>
+<h1 id="三级缓存"><a href="#三级缓存" class="headerlink" title="三级缓存"></a>三级缓存</h1><p>完整对象创建分两个步骤：实例化 + 初始化，只要初始化没进行完毕，就不完整<br>对象分三种类型：刚实例化的普通对象（放在三级缓存），提前进行AOP的不完整对象（放在二级缓存），完整对象（一级缓存&#x2F;单例池）</p>
+<p>循坏依赖带来了什么问题？重复创建，如何解决？第三级缓存通过存储刚创建的实例化普通对象来打破循环，但循环依赖需要的是完成了AOP的代理对象，所以将三级缓存中的对象取出，提前进行AOP并放入二级缓存</p>
+<p>那为什么要二级缓存？因为需要区分“已进行AOP的不完整对象”和“完整的代理对象”，并防止多次AOP（多个循环依赖叠加可导致）</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/365147/1592539097062-7912a20c-f209-47bd-bdc0-d6d4485ab395.png?x-oss-process=image/watermark,type_d3F5LW1pY3JvaGVp,size_43,text_5Zu-54G15a2m6ZmiLeWRqOeRnA==,color_FFFFFF,shadow_50,t_80,g_se,x_10,y_10/resize,w_1125,limit_0" alt="image.png"></p>
+<p>1.A创建将() -&gt; getEarlyBeanReference(beanName, mbd, bean)表达式放入三级缓存<strong>singletonFactories</strong></p>
+<p>getEarlyBeanReference(beanName, mbd, bean)首先得到一个cachekey，cachekey就是beanName。然后把beanName和bean（这是原始对象）存入earlyProxyReferences中<br><strong>调用wrapIfNecessary进行AOP，得到一个代理对象</strong>。</p>
+<p>2.A属性注入B,需要创建B</p>
+<p>3.B创建时属性注入需要A,从三级缓存拿出表达式执行,将A的执行完AOP的代理对象放入二级缓存earlySingletonObjects中,B属性注入注入的时A的代理对象,只是未初始化完,和A最后放入单例池的是同一个对象</p>
+<p>4.A接着生命周期,由于已经AOP因此不用再AOP,利用earlyProxyReferences判断是否已经AOP,在BeanPostProcessor的执行之后，就需要把A对应的对象放入singletonObjects中了</p>
+<p>**注意:**earlyProxyReferences中的对象还未AOP</p>
+<p>三级缓存用hashmap</p>
+<h1 id="Async"><a href="#Async" class="headerlink" title="@Async"></a>@Async</h1><p>BeanPostProcessor:利用earlyProxyReferences判断是否已经AOP,根据结果返回bean</p>
+<p>不出现循环依赖传入的bean和返回的bean不同</p>
+<p>出现循环依赖传入的bean和返回的bean不同(不会再AOP,直接返回)</p>
+<p>如果添加@Async,会多一个BeanPostProcessor,将传入的bean进行AOP,导致有两个代理对象,报错</p>
+<h2 id="Lazy"><a href="#Lazy" class="headerlink" title="@Lazy"></a>@Lazy</h2><p>在属性注入上添加@Lazy,这样就不会有循环依赖,不会有两个代理对象</p>
+<p>@Lazy是将属性生成一个代理对象赋值,在使用时再去单例池找</p>
+<h1 id="构造方法的循环依赖"><a href="#构造方法的循环依赖" class="headerlink" title="构造方法的循环依赖"></a>构造方法的循环依赖</h1><ol>
+<li>属性注入循环依赖</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span>&#123;</span><br><span class="line"><span class="meta">@Autowire</span></span><br><span class="line">    B b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line">classB&#123;</span><br><span class="line"><span class="meta">@Autowire</span></span><br><span class="line">    A a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>构造方法循环依赖,直接卡在创建普通对象,解决办法@Lazy,这样参数就能使用代理对象注入</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span>&#123;</span><br><span class="line"> <span class="keyword">private</span> B b;</span><br><span class="line"> <span class="meta">@Lazy</span></span><br><span class="line"> puclic <span class="title function_">A</span><span class="params">(B b)</span>&#123;</span><br><span class="line"> <span class="built_in">this</span>.b = b</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">class B&#123;</span><br><span class="line"> private A a;</span><br><span class="line"> </span><br><span class="line"> puclic B(Aa b)&#123;</span><br><span class="line"> this.a = a</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>构造方法循环依赖加多例会导致不停循环创建</li>
+</ol>
+<h1 id="Vaule"><a href="#Vaule" class="headerlink" title="@Vaule"></a>@Vaule</h1><ol>
+<li>@Value(“${key}”),赋值配置文件,环境变量等中的值,不存在直接将字符串赋值</li>
+<li>@Value(“key}”),赋值字符串</li>
+<li>@Value(“#{key}”),类似@Autowire,@Resource的名字注入</li>
+<li>自定义注解,避免耦合</li>
+</ol>
+<h1 id="Bean"><a href="#Bean" class="headerlink" title="@Bean"></a>@Bean</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Bean(autowire = Autowire.BY_TYPE)</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>使用到这个bean时利用bean的set方法进行自动注入</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Bean(autowireCandidate = false)</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>不能作为候选bean,不会用来注入</li>
+<li>可以单独使用</li>
+<li>自定义注解,加在自己的注解上,避免重复写</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Target(&#123;ElementType.METHOD, ElementType.ANNOTATION_TYPE&#125;)</span><br><span class="line">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="line">@Documented</span><br><span class="line">@Bean</span><br><span class="line">@Scope(&quot;prototype&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>**注意:**不和@Configration一起使用,调用类种方法生成对象时,会调用类中的方法,返回1个实例对象,和@Configration一起使用会从单例池返回</p>
+<p>加@Configration会生成一个代理对象,执行对应方法时查看对应方法的bena是否创建,创建就直接使用,否则创建放入单例池</p>
+<h1 id="ComponentScan"><a href="#ComponentScan" class="headerlink" title="@ComponentScan"></a>@ComponentScan</h1><h2 id="注解参数"><a href="#注解参数" class="headerlink" title="注解参数"></a>注解参数</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@ComponentScan(value = &quot;&quot;,includeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION,value = Zhouyu.class))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">excludeFilters = </span><br></pre></td></tr></table></figure>
+
+<p>路径下的@Zhouyu注解也会被当作bean</p>
+<h2 id="扫描索引"><a href="#扫描索引" class="headerlink" title="扫描索引"></a>扫描索引</h2><p>在资源目录下创建META-INF&#x2F;spring.components文件,key&#x3D;value,key为类全类名,value为注解类型,有了这个文件,注解会失效</p>
+<h1 id="Conditional"><a href="#Conditional" class="headerlink" title="@Conditional"></a>@Conditional</h1><p>可以放在类或@Bean上</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Conditional(value = &#123;&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>value存放Class&lt;? extends Condition&gt;数组</p>
+<p>Condition类需要自定义类去实现Condition接口</p>
+<p>通过matches返回true或false判断是否类需要加载</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> <span class="keyword">implements</span> <span class="title class_">Condition</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">matches</span><span class="params">(ConditionContext conditionContext, AnnotatedTypeMetadata annotatedTypeMetadata)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://scf-deploy-ap-guangzhou-1301571523.cos.ap-guangzhou.myqcloud.com//blog/image-20221027104423059.png" alt="image-20221027104423059"></p>
+<h1 id="Autowire"><a href="#Autowire" class="headerlink" title="@Autowire"></a>@Autowire</h1><ol>
+<li><p>放在属性上</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这里使用的是unsafe直接将值填充到内存</span></span><br><span class="line">unsafe.putObject(var1, <span class="built_in">this</span>.fieldOffset, var2);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>放在set方法上(类似@PostConstruct,不过执行实际不同)</p>
+</li>
+<li><p>放在构造方法上</p>
+<ul>
+<li>解决推断构造方法</li>
+<li>属性注入</li>
+</ul>
+</li>
+<li><p>参数前(支持测试时注入)</p>
+</li>
+<li><p>自定义注解上,自己的注解会加上注解功能(可以加上一些参数)</p>
+</li>
+</ol>
+<p><strong>注意:</strong></p>
+<ol>
+<li>不支持使用static,如果支持使用static会导致每次创建新的实例,static修饰的类对象会变化,其他实例由于用的时类对象,所以也会变化</li>
+<li>require属性表示是否必须有值</li>
+</ol>
+<h1 id="Lazy-1"><a href="#Lazy-1" class="headerlink" title="@Lazy"></a>@Lazy</h1><ol>
+<li>类上(创建bean的时机,创建Spring容器时或getBean时创建)</li>
+<li>属性上,会先赋值一个代理对象,直到使用时才去单例池中找</li>
+<li>方法上(加了@Autowire的set方法上,和属性上类似,先创建代理对象赋值)</li>
+<li>参数上(同上类似)</li>
+<li>构造方法上(可以解决循环依赖)</li>
+</ol>
+<h1 id="Autowire和-Resource"><a href="#Autowire和-Resource" class="headerlink" title="@Autowire和@Resource"></a>@Autowire和@Resource</h1><p>JDK包中的@Resource,spring提供的@Autowire</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Resource(name=&quot;&quot;)</span><br><span class="line"></span><br><span class="line">@Autowire</span><br><span class="line">@Qualifier(value = &quot;&quot;)</span><br></pre></td></tr></table></figure>
+
+<h1 id="Import"><a href="#Import" class="headerlink" title="@Import"></a>@Import</h1><p><img src="https://scf-deploy-ap-guangzhou-1301571523.cos.ap-guangzhou.myqcloud.com//blog/image-20221027134348814.png" alt="image-20221027134348814"></p>
+<p>ImportSelector和DeferredImportSelector都是接口,自定义类去实现接口和相关方法,可以批量导入类</p>
+<p>ImportBeanDefinitionRegistrar也是接口,可以重写相关方法,自己去注册bean</p>
+<p><img src="https://scf-deploy-ap-guangzhou-1301571523.cos.ap-guangzhou.myqcloud.com//blog/image-20221027134709636.png" alt="image-20221027134709636"></p>
+<h1 id="Lookup"><a href="#Lookup" class="headerlink" title="@Lookup"></a>@Lookup</h1><p>在抽象类中的方法上标注@Lookup,抽象类会创建一个代理bean,被标注@Lookup的抽象方法会返回value参数中的实例对象</p>
+<p><strong><img src="https://scf-deploy-ap-guangzhou-1301571523.cos.ap-guangzhou.myqcloud.com//blog/image-20221027135225154.png" alt="image-20221027135225154"></strong></p>
+<h1 id="Primary"><a href="#Primary" class="headerlink" title="@Primary"></a>@Primary</h1><p>发现多个相同的bean,使用带有@Primary的bean,不能注解多个</p>
+<h1 id="注册一个bean的方式"><a href="#注册一个bean的方式" class="headerlink" title="注册一个bean的方式"></a>注册一个bean的方式</h1><p><img src="https://scf-deploy-ap-guangzhou-1301571523.cos.ap-guangzhou.myqcloud.com//blog/image-20221027135704799.png" alt="image-20221027135704799"></p>
+<h2 id="FactoryBean"><a href="#FactoryBean" class="headerlink" title="FactoryBean"></a>FactoryBean</h2><ol>
+<li><p>自定义类实现FactoryBean</p>
+</li>
+<li><p>会创建两个Bean,一个是ZhouyFactoryBean的bean,启动时创建,一个是UserService的bean,获取时创建</p>
+</li>
+<li><p>@Component不设置名字,getBean(“zhouyuFactoryBean”)会得到UserService的Bean</p>
+</li>
+<li><p>加一个&amp;  getBean(“&amp;zhouyuFactoryBean”)获得ZhouyFactoryBean的bean</p>
+</li>
+<li><p>不会属性注入</p>
+</li>
+</ol>
+<p><img src="https://scf-deploy-ap-guangzhou-1301571523.cos.ap-guangzhou.myqcloud.com//blog/image-20221027140609620.png" alt="image-20221027140609620"></p>
+<h2 id="SmartFactoryBean"><a href="#SmartFactoryBean" class="headerlink" title="SmartFactoryBean"></a>SmartFactoryBean</h2><p>可以设置spring启动时创建</p>
+<p><img src="https://scf-deploy-ap-guangzhou-1301571523.cos.ap-guangzhou.myqcloud.com//blog/image-20221027140955835.png" alt="image-20221027140955835"></p>
+<h1 id="依赖注入有哪些方式"><a href="#依赖注入有哪些方式" class="headerlink" title="依赖注入有哪些方式"></a>依赖注入有哪些方式</h1><p><img src="https://scf-deploy-ap-guangzhou-1301571523.cos.ap-guangzhou.myqcloud.com//blog/image-20221027135758022.png" alt="image-20221027135758022"></p>
+<ol>
+<li>自动注入,依赖@Bean里的autowire &#x3D; Autowre.BY_NAME</li>
+</ol>
+<h1 id="获取ApplicationContext的方式"><a href="#获取ApplicationContext的方式" class="headerlink" title="获取ApplicationContext的方式"></a>获取ApplicationContext的方式</h1><p><img src="https://scf-deploy-ap-guangzhou-1301571523.cos.ap-guangzhou.myqcloud.com//blog/image-20221027142417581.png" alt="image-20221027142417581"></p>
+<h1 id="Bean的作用域"><a href="#Bean的作用域" class="headerlink" title="Bean的作用域"></a>Bean的作用域</h1><p><img src="https://scf-deploy-ap-guangzhou-1301571523.cos.ap-guangzhou.myqcloud.com//blog/image-20221027142433259.png" alt="image-20221027142433259"></p>
+<h1 id="Spring类型有哪些转化方式"><a href="#Spring类型有哪些转化方式" class="headerlink" title="Spring类型有哪些转化方式"></a>Spring类型有哪些转化方式</h1><p><img src="https://scf-deploy-ap-guangzhou-1301571523.cos.ap-guangzhou.myqcloud.com//blog/image-20221027142454244.png" alt="image-20221027142454244"></p>
+<h1 id="SpringMVC启动"><a href="#SpringMVC启动" class="headerlink" title="SpringMVC启动"></a>SpringMVC启动</h1><ol>
+<li><p>tomcat启动</p>
+</li>
+<li><p>解析web.xml  Listener中创建Spring容器(ServerletContext)</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">listener</span>&gt;</span>  </span><br><span class="line">     <span class="tag">&lt;<span class="name">listener-class</span>&gt;</span>org.springframework.web.context.ContextLoaderListener<span class="tag">&lt;/<span class="name">listener-class</span>&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;/<span class="name">listener</span>&gt;</span>  </span><br><span class="line"> <span class="comment">&lt;!--2、部署applicationContext的xml文件--&gt;</span>  </span><br><span class="line"> <span class="comment">&lt;!--如果在web.xml中不写任何参数配置信息，默认的路径是&quot;/WEB-INF/applicationContext.xml，  </span></span><br><span class="line"><span class="comment"> 在WEB-INF目录下创建的xml文件的名称必须是applicationContext.xml。  </span></span><br><span class="line"><span class="comment"> 如果是要自定义文件名可以在web.xml里加入contextConfigLocation这个context参数：  </span></span><br><span class="line"><span class="comment"> 在&lt;param-value&gt; &lt;/param-value&gt;里指定相应的xml文件名，如果有多个xml文件，可以写在一起并以“,”号分隔。  </span></span><br><span class="line"><span class="comment"> 也可以这样applicationContext-*.xml采用通配符，比如这那个目录下有applicationContext-ibatis-base.xml，  </span></span><br><span class="line"><span class="comment"> applicationContext-action.xml，applicationContext-ibatis-dao.xml等文件，都会一同被载入。  </span></span><br><span class="line"><span class="comment"> 在ContextLoaderListener中关联了ContextLoader这个类，所以整个加载配置过程由ContextLoader来完成。--&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;<span class="name">context-param</span>&gt;</span>  </span><br><span class="line">     <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span>  </span><br><span class="line">     <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:spring/applicationContext.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;/<span class="name">context-param</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>DispatcherServerlet实例化化</p>
+</li>
+<li><p>DispatcherServerlet.init()  创建Spring容器</p>
+</li>
+</ol>
+<p>在web.xml中配置拦截器,   listener,以及DispatcherServelet</p>
+<p><img src="https://scf-deploy-ap-guangzhou-1301571523.cos.ap-guangzhou.myqcloud.com//blog/springmvc.drawio.png" alt="springmvc.drawio"></p>
+<h2 id="web-xml中的Listener"><a href="#web-xml中的Listener" class="headerlink" title="web.xml中的Listener"></a>web.xml中的Listener</h2><p>用来创建父容器</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">好高骛远</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/10/26/spring%E7%AC%94%E8%AE%B0/">http://example.com/2022/10/26/spring笔记/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">好高骛远</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/spring/">spring</a></div><div class="post_share"><div class="social-share" data-image="https://s4.ax1x.com/2022/02/25/bADyzq.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/10/28/%E9%9D%A2%E7%BB%8F%E6%80%BB%E7%BB%93/"><img class="prev-cover" src="https://s4.ax1x.com/2022/02/25/bADyzq.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">面经总结</div></div></a></div><div class="next-post pull-right"><a href="/2022/10/20/%E7%88%B1%E5%A5%87%E8%89%BA%E6%97%A5%E5%B8%B8%E5%AE%9E%E4%B9%A0%E9%9D%A2%E7%BB%8F/"><img class="next-cover" src="https://s4.ax1x.com/2022/02/25/bADyzq.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">爱奇艺日常实习面经</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/03/17/2022-springdataRedis/" title="springdataRedis"><img class="cover" src="https://s4.ax1x.com/2022/02/25/bADyzq.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-17</div><div class="title">springdataRedis</div></div></a></div><div><a href="/2022/03/20/2022-ssm%E5%AD%A6%E4%B9%A0/" title="ssm学习"><img class="cover" src="https://s4.ax1x.com/2022/02/25/bADyzq.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-20</div><div class="title">ssm学习</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://s4.ax1x.com/2022/02/25/bADjTe.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">好高骛远</div><div class="author-info__description">不要你唯唯诺诺,我要你风流快活</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">42</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">41</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">20</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/s1314233"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/s1314233" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎光临!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%95%E4%BE%8B%E6%B1%A0"><span class="toc-number">1.</span> <span class="toc-text">单例池</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PostConstruct"><span class="toc-number">2.</span> <span class="toc-text">@PostConstruct</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">3.</span> <span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%92%8C%E5%AE%9E%E4%BE%8B%E5%8C%96"><span class="toc-number">4.</span> <span class="toc-text">初始化和实例化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%90%8E"><span class="toc-number">5.</span> <span class="toc-text">初始化后</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A8%E6%96%AD%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95"><span class="toc-number">6.</span> <span class="toc-text">推断构造方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AOP%E5%BA%95%E5%B1%82"><span class="toc-number">7.</span> <span class="toc-text">AOP底层</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E5%BA%95%E5%B1%82"><span class="toc-number">8.</span> <span class="toc-text">事务底层</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E5%A4%B1%E6%95%88"><span class="toc-number">8.1.</span> <span class="toc-text">事务失效</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configuration"><span class="toc-number">8.2.</span> <span class="toc-text">@Configuration</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E7%BA%A7%E7%BC%93%E5%AD%98"><span class="toc-number">9.</span> <span class="toc-text">三级缓存</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Async"><span class="toc-number">10.</span> <span class="toc-text">@Async</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Lazy"><span class="toc-number">10.1.</span> <span class="toc-text">@Lazy</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%E7%9A%84%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96"><span class="toc-number">11.</span> <span class="toc-text">构造方法的循环依赖</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Vaule"><span class="toc-number">12.</span> <span class="toc-text">@Vaule</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Bean"><span class="toc-number">13.</span> <span class="toc-text">@Bean</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ComponentScan"><span class="toc-number">14.</span> <span class="toc-text">@ComponentScan</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E8%A7%A3%E5%8F%82%E6%95%B0"><span class="toc-number">14.1.</span> <span class="toc-text">注解参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%AB%E6%8F%8F%E7%B4%A2%E5%BC%95"><span class="toc-number">14.2.</span> <span class="toc-text">扫描索引</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Conditional"><span class="toc-number">15.</span> <span class="toc-text">@Conditional</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Autowire"><span class="toc-number">16.</span> <span class="toc-text">@Autowire</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lazy-1"><span class="toc-number">17.</span> <span class="toc-text">@Lazy</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Autowire%E5%92%8C-Resource"><span class="toc-number">18.</span> <span class="toc-text">@Autowire和@Resource</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Import"><span class="toc-number">19.</span> <span class="toc-text">@Import</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lookup"><span class="toc-number">20.</span> <span class="toc-text">@Lookup</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Primary"><span class="toc-number">21.</span> <span class="toc-text">@Primary</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E4%B8%80%E4%B8%AAbean%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">22.</span> <span class="toc-text">注册一个bean的方式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#FactoryBean"><span class="toc-number">22.1.</span> <span class="toc-text">FactoryBean</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SmartFactoryBean"><span class="toc-number">22.2.</span> <span class="toc-text">SmartFactoryBean</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B9%E5%BC%8F"><span class="toc-number">23.</span> <span class="toc-text">依赖注入有哪些方式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96ApplicationContext%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">24.</span> <span class="toc-text">获取ApplicationContext的方式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Bean%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-number">25.</span> <span class="toc-text">Bean的作用域</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Spring%E7%B1%BB%E5%9E%8B%E6%9C%89%E5%93%AA%E4%BA%9B%E8%BD%AC%E5%8C%96%E6%96%B9%E5%BC%8F"><span class="toc-number">26.</span> <span class="toc-text">Spring类型有哪些转化方式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SpringMVC%E5%90%AF%E5%8A%A8"><span class="toc-number">27.</span> <span class="toc-text">SpringMVC启动</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#web-xml%E4%B8%AD%E7%9A%84Listener"><span class="toc-number">27.1.</span> <span class="toc-text">web.xml中的Listener</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/10/31/%E5%BF%AB%E6%89%8B%E6%97%A5%E5%B8%B8%E5%AE%9E%E4%B9%A0%E9%9D%A2%E7%BB%8F/" title="快手日常实习面经">快手日常实习面经</a><time datetime="2022-10-31T10:58:30.000Z" title="发表于 2022-10-31 18:58:30">2022-10-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/10/28/%E9%9D%A2%E7%BB%8F%E6%80%BB%E7%BB%93/" title="面经总结">面经总结</a><time datetime="2022-10-28T08:08:32.000Z" title="发表于 2022-10-28 16:08:32">2022-10-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/10/26/spring%E7%AC%94%E8%AE%B0/" title="spring笔记">spring笔记</a><time datetime="2022-10-26T06:59:09.000Z" title="发表于 2022-10-26 14:59:09">2022-10-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/10/20/%E7%88%B1%E5%A5%87%E8%89%BA%E6%97%A5%E5%B8%B8%E5%AE%9E%E4%B9%A0%E9%9D%A2%E7%BB%8F/" title="爱奇艺日常实习面经">爱奇艺日常实习面经</a><time datetime="2022-10-20T10:29:45.000Z" title="发表于 2022-10-20 18:29:45">2022-10-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/10/19/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" title="消息中间件">消息中间件</a><time datetime="2022-10-19T04:53:06.000Z" title="发表于 2022-10-19 12:53:06">2022-10-19</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 好高骛远</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"></div><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
