@@ -696,9 +696,9 @@
       
         <tags>
             
-            <tag> optee </tag>
-            
             <tag> SDN </tag>
+            
+            <tag> optee </tag>
             
         </tags>
       
@@ -723,9 +723,9 @@
       
         <tags>
             
-            <tag> SDN </tag>
-            
             <tag> ovs </tag>
+            
+            <tag> SDN </tag>
             
         </tags>
       
